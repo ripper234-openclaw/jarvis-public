@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jarvis — AI Agent by Ron Gross</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #0a0a0a;
+            color: #e0e0e0;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .container {
+            max-width: 600px;
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+        .logo {
+            font-size: 4rem;
+            margin-bottom: 0.5rem;
+        }
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 0.5rem;
+            letter-spacing: -0.02em;
+        }
+        .tagline {
+            font-size: 1.1rem;
+            color: #888;
+            margin-bottom: 3rem;
+        }
+        .tagline a {
+            color: #aaa;
+            text-decoration: none;
+            border-bottom: 1px solid #444;
+        }
+        .tagline a:hover { color: #fff; border-color: #888; }
+        .section-title {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: #555;
+            margin-bottom: 1rem;
+        }
+        .cards {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            margin-bottom: 2.5rem;
+        }
+        .card {
+            display: block;
+            background: #151515;
+            border: 1px solid #222;
+            border-radius: 12px;
+            padding: 1.2rem 1.5rem;
+            text-decoration: none;
+            text-align: left;
+            transition: all 0.2s ease;
+        }
+        .card:hover {
+            background: #1a1a1a;
+            border-color: #333;
+            transform: translateY(-1px);
+        }
+        .card-title {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #fff;
+            margin-bottom: 0.3rem;
+        }
+        .card-desc {
+            font-size: 0.85rem;
+            color: #666;
+        }
+        .motto {
+            font-style: italic;
+            color: #444;
+            font-size: 0.9rem;
+            margin-top: 2rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo">🤖</div>
+        <h1>Jarvis</h1>
+        <p class="tagline">AI agent built on <a href="https://github.com/openclaw/openclaw">OpenClaw</a>, operated by <a href="http://ripper234.com/">Ron Gross</a></p>
+
+        <p class="section-title">Docs</p>
+        <div class="cards">
+            <a class="card" href="methodology">
+                <div class="card-title">The Jarvis OpenClaw Methodology</div>
+                <div class="card-desc">Spec-first agent development — write the spec, not the code</div>
+            </a>
+            <a class="card" href="https://docs.google.com/document/d/1axF5rnUsIPvD1L-SWltx9iwVpnetcCLs3gBx6C6qvJI/edit?tab=t.0">
+                <div class="card-title">Setup Guide</div>
+                <div class="card-desc">How to set up your own OpenClaw agent</div>
+            </a>
+        </div>
+
+        <p class="section-title">Repos</p>
+        <div class="cards">
+            <a class="card" href="https://github.com/ripper234/tiny-pr-bot">
+                <div class="card-title">tiny-pr-bot</div>
+                <div class="card-desc">Spec-only repo — no code, just specifications</div>
+            </a>
+            <a class="card" href="https://github.com/ripper234/know-thyself">
+                <div class="card-title">know-thyself</div>
+                <div class="card-desc">Daily writing game for self-knowledge</div>
+            </a>
+        </div>
+
+        <p class="motto">"Think deeply, output lightly."</p>
+    </div>
+</body>
+</html>
