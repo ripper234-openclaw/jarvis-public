@@ -3,124 +3,95 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jarvis — AI Agent by Ron Gross</title>
+    <title>Jarvis — An OpenClaw Agent</title>
+    <meta name="description" content="Spec-first AI agent built on OpenClaw by Ron Gross">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             font-family: 'Inter', -apple-system, sans-serif;
-            background: #050505;
+            background: #080808;
             color: #e0e0e0;
             min-height: 100dvh;
             display: flex;
             justify-content: center;
             align-items: center;
             -webkit-text-size-adjust: 100%;
+            padding: 2rem 1.25rem;
         }
-        .page {
-            max-width: 680px;
-            width: 100%;
-            padding: 2.5rem;
-        }
+        .page { max-width: 540px; width: 100%; }
 
-        /* Header */
-        .header {
-            display: flex;
-            align-items: center;
-            gap: 1.2rem;
-            margin-bottom: 2rem;
-        }
-        .avatar {
-            width: 48px;
-            height: 48px;
-            background: linear-gradient(135deg, #6366f1, #8b5cf6);
-            border-radius: 14px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.4rem;
-            flex-shrink: 0;
-            box-shadow: 0 0 40px rgba(99,102,241,0.15);
-        }
-        .header-text h1 {
-            font-size: 1.5rem;
+        /* Header — left-aligned, compact */
+        .header { margin-bottom: 1.8rem; }
+        h1 {
+            font-size: 1.8rem;
             font-weight: 700;
             color: #fff;
-            letter-spacing: -0.02em;
+            letter-spacing: -0.03em;
+            margin-bottom: 0.25rem;
         }
-        .header-text p {
-            font-size: 0.85rem;
+        .tagline {
+            font-size: 0.9rem;
             color: #555;
         }
-        .header-text a {
-            color: #7c7cf5;
-            text-decoration: none;
-        }
-        .header-text a:hover { color: #a5a5ff; }
+        .tagline a { color: #7c7cf5; text-decoration: none; }
+        .tagline a:hover { color: #a5a5ff; }
 
-        /* Grid — 2x2 default, stacks on narrow mobile */
+        /* Cards — 2x2, big tap targets, generous whitespace */
         .grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 0.75rem;
         }
-        .card {
+        a.card {
             display: flex;
-            align-items: center;
-            gap: 0.9rem;
-            background: rgba(255,255,255,0.03);
+            flex-direction: column;
+            justify-content: center;
+            background: rgba(255,255,255,0.025);
             border: 1px solid rgba(255,255,255,0.06);
-            border-radius: 12px;
-            padding: 1rem 1.1rem;
+            border-radius: 14px;
+            padding: 1.25rem;
             text-decoration: none;
-            transition: all 0.2s ease;
+            transition: border-color 0.2s, background 0.2s;
             -webkit-tap-highlight-color: transparent;
-            min-height: 44px; /* iOS touch target */
+            min-height: 90px;
         }
-        .card:hover, .card:active {
-            background: rgba(255,255,255,0.05);
-            border-color: rgba(99,102,241,0.2);
+        a.card:hover, a.card:active {
+            background: rgba(255,255,255,0.045);
+            border-color: rgba(99,102,241,0.25);
         }
-        .card:hover { transform: translateY(-1px); }
-        .card-icon { width: 32px; height: 32px; flex-shrink: 0; }
-        .card-icon img { width: 100%; height: 100%; }
-        .card-body { min-width: 0; }
         .card-title {
-            font-size: 0.85rem;
+            font-size: 0.9rem;
             font-weight: 600;
             color: #fff;
-            line-height: 1.3;
+            margin-bottom: 0.2rem;
         }
         .card-desc {
-            font-size: 0.72rem;
+            font-size: 0.75rem;
             color: #555;
-            line-height: 1.3;
+            line-height: 1.4;
         }
 
         /* Footer */
         .footer {
-            margin-top: 2rem;
-            text-align: center;
-
-            color: #2a2a2a;
-            font-size: 0.85rem;
+            margin-top: 1.8rem;
+            font-size: 0.78rem;
+            color: #333;
         }
+        .footer a { color: #444; text-decoration: none; }
+        .footer a:hover { color: #7c7cf5; }
 
-        /* Mobile: keep 2x2 but tighten, only stack on very narrow */
-        @media (max-width: 480px) {
-            .page { padding: 1.5rem; }
-            .header { gap: 1rem; margin-bottom: 1.5rem; }
-            .header-text h1 { font-size: 1.3rem; }
-            .header-text p { font-size: 0.8rem; }
-            .grid { gap: 0.6rem; }
-            .card { padding: 0.85rem 0.9rem; gap: 0.7rem; }
-            .card-icon { width: 28px; height: 28px; }
-            .card-title { font-size: 0.8rem; }
-            .card-desc { font-size: 0.68rem; }
-            .footer { margin-top: 1.5rem; font-size: 0.8rem; }
+        /* Mobile — keep 2x2, just tighten */
+        @media (max-width: 420px) {
+            body { padding: 1.5rem 1rem; }
+            h1 { font-size: 1.5rem; }
+            .grid { gap: 0.5rem; }
+            a.card { padding: 1rem; min-height: 76px; }
+            .card-title { font-size: 0.82rem; }
+            .card-desc { font-size: 0.7rem; }
         }
-        @media (max-width: 340px) {
+        @media (max-width: 320px) {
             .grid { grid-template-columns: 1fr; }
         }
     </style>
@@ -128,45 +99,30 @@
 <body>
     <div class="page">
         <div class="header">
-            <div class="avatar">🤖</div>
-            <div class="header-text">
-                <h1>Jarvis</h1>
-                <p>An <a href="https://github.com/openclaw/openclaw">OpenClaw</a> agent</p>
-            </div>
+            <h1>Jarvis</h1>
+            <p class="tagline">An <a href="https://github.com/openclaw/openclaw">OpenClaw</a> agent</p>
         </div>
 
         <div class="grid">
             <a class="card" href="methodology.html">
-                <div class="card-icon"><img src="img/methodology.svg" alt=""></div>
-                <div class="card-body">
-                    <div class="card-title">Methodology</div>
-                    <div class="card-desc">Spec-first agent development</div>
-                </div>
+                <div class="card-title">Methodology</div>
+                <div class="card-desc">Spec-first development</div>
             </a>
             <a class="card" href="setup.html">
-                <div class="card-icon"><img src="img/setup.svg" alt=""></div>
-                <div class="card-body">
-                    <div class="card-title">Setup Guide</div>
-                    <div class="card-desc">Set up your own agent</div>
-                </div>
+                <div class="card-title">Setup Guide</div>
+                <div class="card-desc">Build your own agent</div>
             </a>
             <a class="card" href="https://github.com/ripper234/tiny-pr-bot">
-                <div class="card-icon"><img src="img/tiny-pr.svg" alt=""></div>
-                <div class="card-body">
-                    <div class="card-title">tiny-pr-bot</div>
-                    <div class="card-desc">Pure spec, no code</div>
-                </div>
+                <div class="card-title">tiny-pr-bot</div>
+                <div class="card-desc">Pure spec, no code</div>
             </a>
             <a class="card" href="request-for-startups.html">
-                <div class="card-icon"><img src="img/startups.svg" alt=""></div>
-                <div class="card-body">
-                    <div class="card-title">Request for Startups</div>
-                    <div class="card-desc">Ideas to fund or build</div>
-                </div>
+                <div class="card-title">Request for Startups</div>
+                <div class="card-desc">Ideas to fund or build</div>
             </a>
         </div>
 
-        <p class="footer">Built by <a href="http://ripper234.com/" style="color:#555;text-decoration:none;">Ron Gross</a></p>
+        <p class="footer">Built by <a href="http://ripper234.com/">Ron Gross</a></p>
     </div>
 </body>
 </html>
