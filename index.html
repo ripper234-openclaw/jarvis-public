@@ -5,102 +5,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jarvis — An OpenClaw Agent</title>
     <meta name="description" content="Spec-first AI agent built on OpenClaw by Ron Gross">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            font-family: 'Inter', -apple-system, sans-serif;
-            background: #080808;
-            color: #e0e0e0;
-            min-height: 100dvh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            -webkit-text-size-adjust: 100%;
-            padding: 2rem 1.25rem;
-        }
-        .page { max-width: 540px; width: 100%; }
-
-        /* Header — left-aligned, compact */
-        .header { margin-bottom: 1.8rem; }
-        h1 {
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: #fff;
-            letter-spacing: -0.03em;
-            margin-bottom: 0.25rem;
-        }
-        .tagline {
-            font-size: 0.9rem;
-            color: #555;
-        }
-        .tagline a { color: #7c7cf5; text-decoration: none; }
-        .tagline a:hover { color: #a5a5ff; }
-
-        /* Cards — 2x2, big tap targets, generous whitespace */
-        .grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 0.75rem;
-        }
-        a.card {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            background: rgba(255,255,255,0.025);
-            border: 1px solid rgba(255,255,255,0.06);
-            border-radius: 14px;
-            padding: 1.25rem;
-            text-decoration: none;
-            transition: border-color 0.2s, background 0.2s;
-            -webkit-tap-highlight-color: transparent;
-            min-height: 90px;
-        }
-        a.card:hover, a.card:active {
-            background: rgba(255,255,255,0.045);
-            border-color: rgba(99,102,241,0.25);
-        }
-        .card-title {
-            font-size: 0.9rem;
-            font-weight: 600;
-            color: #fff;
-            margin-bottom: 0.2rem;
-        }
-        .card-desc {
-            font-size: 0.75rem;
-            color: #555;
-            line-height: 1.4;
-        }
-
-        /* Footer */
-        .footer {
-            margin-top: 1.8rem;
-            font-size: 0.78rem;
-            color: #333;
-        }
-        .footer a { color: #444; text-decoration: none; }
-        .footer a:hover { color: #7c7cf5; }
-
-        /* Mobile — keep 2x2, just tighten */
-        @media (max-width: 420px) {
-            body { padding: 1.5rem 1rem; }
-            h1 { font-size: 1.5rem; }
-            .grid { gap: 0.5rem; }
-            a.card { padding: 1rem; min-height: 76px; }
-            .card-title { font-size: 0.82rem; }
-            .card-desc { font-size: 0.7rem; }
-        }
-        @media (max-width: 320px) {
-            .grid { grid-template-columns: 1fr; }
+        .hero-img {
+            width: 100%;
+            border-radius: 16px;
+            margin-bottom: 1.8rem;
+            box-shadow: 0 4px 24px rgba(79,70,229,0.08);
         }
     </style>
 </head>
 <body>
+    <div class="page-centered">
     <div class="page">
-        <div class="header">
-            <h1>Jarvis, an <a href="https://github.com/openclaw/openclaw" style="color:#7c7cf5;text-decoration:none;">OpenClaw</a> Agent</h1>
+        <div style="margin-bottom:1.2rem;">
+            <h1>Jarvis, an <a href="https://github.com/openclaw/openclaw">OpenClaw</a> Agent</h1>
         </div>
+
+        <img class="hero-img" src="img/hero.webp" alt="AI agent abstract illustration" loading="eager">
 
         <div class="grid">
             <a class="card" href="methodology.html">
@@ -122,6 +44,8 @@
         </div>
 
         <p class="footer">Built by <a href="http://ripper234.com/">Ron Gross</a></p>
+        <p class="version">v0.2-staging</p>
+    </div>
     </div>
 </body>
 </html>

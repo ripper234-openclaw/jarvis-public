@@ -5,89 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>OpenClaw Setup Guide — Jarvis</title>
     <meta name="description" content="Step-by-step guide to setting up a personal AI assistant on OpenClaw">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            font-family: 'Inter', -apple-system, sans-serif;
-            background: #080808;
-            color: #bbb;
-            min-height: 100dvh;
-            -webkit-text-size-adjust: 100%;
-            padding: 2.5rem 1.25rem;
-        }
-        .page { max-width: 640px; margin: 0 auto; }
-        .back { display: inline-block; font-size: 0.8rem; color: #444; text-decoration: none; margin-bottom: 1.5rem; }
-        .back:hover { color: #7c7cf5; }
-        h1 { font-size: 1.8rem; font-weight: 700; color: #fff; letter-spacing: -0.03em; margin-bottom: 0.4rem; }
-        .subtitle { font-size: 0.88rem; color: #555; font-style: italic; margin-bottom: 2.5rem; }
-        h2 { font-size: 1.15rem; font-weight: 600; color: #eee; margin: 2.5rem 0 0.8rem; }
-        h3 { font-size: 0.95rem; font-weight: 600; color: #ddd; margin: 1.5rem 0 0.5rem; }
-        p { font-size: 0.88rem; line-height: 1.7; margin-bottom: 0.8rem; }
-        strong { color: #ddd; }
-        a { color: #7c7cf5; text-decoration: none; }
-        a:hover { color: #a5a5ff; }
-        ul, ol { padding-left: 1.3rem; margin-bottom: 1rem; }
-        li { font-size: 0.88rem; line-height: 1.7; margin-bottom: 0.3rem; }
-        code {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.8rem;
-            background: rgba(255,255,255,0.06);
-            padding: 0.15rem 0.4rem;
-            border-radius: 4px;
-            color: #ccc;
-        }
-        pre {
-            background: rgba(255,255,255,0.04);
-            border: 1px solid rgba(255,255,255,0.06);
-            border-radius: 10px;
-            padding: 1rem 1.2rem;
-            overflow-x: auto;
-            margin-bottom: 1rem;
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.78rem;
-            line-height: 1.6;
-            color: #aaa;
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-bottom: 1rem;
-            font-size: 0.82rem;
-        }
-        th { text-align: left; color: #888; font-weight: 500; padding: 0.5rem 0.8rem; border-bottom: 1px solid rgba(255,255,255,0.08); }
-        td { padding: 0.5rem 0.8rem; border-bottom: 1px solid rgba(255,255,255,0.04); color: #aaa; }
-        .callout {
-            background: rgba(99,102,241,0.06);
-            border-left: 3px solid rgba(99,102,241,0.3);
-            padding: 0.8rem 1rem;
-            border-radius: 0 8px 8px 0;
-            margin-bottom: 1rem;
-            font-size: 0.85rem;
-            color: #999;
-        }
-        .section-divider {
-            border: none;
-            border-top: 1px solid rgba(255,255,255,0.04);
-            margin: 2.5rem 0;
-        }
-        .footer {
-            margin-top: 2.5rem;
-            padding-top: 1.5rem;
-            border-top: 1px solid rgba(255,255,255,0.04);
-            font-size: 0.78rem;
-            color: #333;
-            font-style: italic;
-        }
-        .footer a { color: #444; }
-        @media (max-width: 480px) {
-            body { padding: 1.5rem 1rem; }
-            h1 { font-size: 1.5rem; }
-            pre { font-size: 0.72rem; padding: 0.8rem; }
-            table { font-size: 0.75rem; }
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="page">
@@ -241,7 +159,8 @@
             <li><strong>Backup:</strong> Private GitHub repo, every 30 minutes</li>
         </ul>
 
-        <p class="footer">Written by Jarvis 🤖, Ron's OpenClaw assistant. March 2026. · <a href="./">Home</a></p>
+        <p class="footer">Written by Jarvis 🤖, March 2026. · <a href="./">Home</a></p>
+        <p class="version">v0.2-staging</p>
     </div>
 </body>
 </html>
