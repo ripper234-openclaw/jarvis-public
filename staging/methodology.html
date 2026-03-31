@@ -4,41 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Jarvis OpenClaw Methodology</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            font-family: 'Inter', -apple-system, sans-serif;
-            background: #050505;
-            color: #666;
-            min-height: 100dvh;
-            -webkit-text-size-adjust: 100%;
-        }
-        .page { max-width: 680px; margin: 0 auto; padding: 2.5rem; }
-        .back { display: inline-block; font-size: 0.8rem; color: #666; text-decoration: none; margin-bottom: 2rem; }
-        .back:hover { color: #4f46e5; }
-        .note { font-size: 0.85rem; color: #666; margin-bottom: 1.5rem; line-height: 1.5; }
-        .note a { color: #4f46e5; text-decoration: none; }
-        .note a:hover { color: #6366f1; }
-        h1 { font-size: 2rem; font-weight: 700; color: #111; letter-spacing: -0.02em; margin-bottom: 0.5rem; }
-        .subtitle { font-size: 1rem; color: #666; font-style: italic; margin-bottom: 2rem; }
-        .tldr { font-size: 0.9rem; color: #666; line-height: 1.7; margin-bottom: 2rem; padding-bottom: 2rem; border-bottom: 1px solid rgba(255,255,255,0.06); }
-        .tldr strong { color: #bbb; }
-        h2 { font-size: 1.2rem; font-weight: 600; color: #111; margin: 2rem 0 0.8rem; }
-        p { font-size: 0.9rem; line-height: 1.7; margin-bottom: 1rem; }
-        strong { color: #bbb; }
-        a { color: #4f46e5; text-decoration: none; }
-        a:hover { color: #6366f1; }
-        .refs { margin-top: 2.5rem; padding-top: 1.5rem; border-top: 1px solid rgba(255,255,255,0.06); }
-        .refs h2 { font-size: 1rem; margin-bottom: 0.5rem; }
-        .refs ol { padding-left: 1.2rem; font-size: 0.85rem; color: #666; }
-        .refs li { margin-bottom: 0.3rem; }
-        @media (max-width: 480px) {
-            .page { padding: 1.5rem; }
-            h1 { font-size: 1.6rem; }
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="page">
@@ -67,14 +33,16 @@
         <h2>Spec is the Product</h2>
         <p>The philosophy is top-down: <strong>spec first</strong>, then tests, then architecture, then code. Most of the code doesn't exist yet, and that's intentional. The spec IS the product at this stage. The agent's job is to sharpen the spec until building becomes obvious. Ron calls it <strong>"think deeply, output lightly."</strong></p>
 
-        <div class="refs">
-            <h2>References</h2>
-            <ol>
-                <li><a href="setup.html">Jarvis OpenClaw setup guide</a></li>
-                <li><a href="https://openspec.dev/">OpenSpec</a> — a lightweight spec-driven framework for AI coding agents</li>
+        <div style="margin-top:2.5rem; padding-top:1.5rem; border-top:1px solid #eee;">
+            <h2 style="font-size:1rem; margin-bottom:0.5rem;">References</h2>
+            <ol style="padding-left:1.2rem; font-size:0.85rem; color:#888;">
+                <li style="margin-bottom:0.3rem;"><a href="setup.html">Jarvis OpenClaw setup guide</a></li>
+                <li style="margin-bottom:0.3rem;"><a href="https://openspec.dev/">OpenSpec</a> — a lightweight spec-driven framework for AI coding agents</li>
             </ol>
         </div>
+
+        <p class="footer"><a href="./">Home</a></p>
+        <p class="version">v0.2-staging</p>
     </div>
-<p style="text-align:center;font-size:0.65rem;color:#ccc;margin-top:2rem;">v0.2-staging</p>
 </body>
 </html>
