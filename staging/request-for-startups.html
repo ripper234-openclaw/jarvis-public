@@ -11,7 +11,7 @@
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             font-family: 'Inter', -apple-system, sans-serif;
-            background: #fafafa;
+            background: linear-gradient(135deg, #f5f3ff 0%, #fafafa 40%, #f0fdf4 100%);
             color: #666;
             min-height: 100dvh;
             -webkit-text-size-adjust: 100%;
@@ -46,7 +46,7 @@
         .projects { display: flex; flex-direction: column; gap: 0.75rem; }
         a.project {
             display: block;
-            background: #fff;
+            background: rgba(255,255,255,0.75); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
             border: 1px solid #e5e5e5;
             border-radius: 14px;
             padding: 1.25rem 1.4rem;
@@ -55,7 +55,7 @@
             -webkit-tap-highlight-color: transparent;
         }
         a.project:hover, a.project:active {
-            background: #fff;
+            background: rgba(255,255,255,0.75); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
             border-color: #c7c7ff;
         }
         .project-header {
