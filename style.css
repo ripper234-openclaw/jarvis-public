@@ -1,4 +1,4 @@
-/* Jarvis site v0.2 — unified light theme */
+/* Jarvis site v0.3.0 — unified light theme */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400&display=swap');
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -154,6 +154,7 @@ a.card:hover {
     transform: translateY(-1px);
 }
 a.card:active { transform: translateY(0); }
+.card-icon { font-size: 1.6rem; margin-bottom: 0.4rem; line-height: 1; }
 .card-title { font-size: 0.9rem; font-weight: 600; color: #111; margin-bottom: 0.2rem; }
 .card-desc { font-size: 0.75rem; color: #888; line-height: 1.4; }
 
@@ -196,10 +197,30 @@ a.project:active { transform: translateY(0); }
     background: rgba(79,70,229,0.08);
     color: #4f46e5;
 }
+.tag-launched {
+    background: rgba(16,185,129,0.1);
+    color: #10b981;
+}
 .tag-ideation {
     background: rgba(156,163,175,0.1);
     color: #9ca3af;
 }
+
+/* CTA button */
+.cta-button {
+    display: inline-block;
+    background: #4f46e5;
+    color: #fff;
+    padding: 0.75rem 1.5rem;
+    border-radius: 10px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background 0.2s, transform 0.15s;
+    margin: 0.5rem 0 1.5rem;
+}
+.cta-button:hover { background: #4338ca; color: #fff; transform: translateY(-1px); }
+.cta-button:active { transform: translateY(0); }
 
 /* Callout box */
 .callout {
