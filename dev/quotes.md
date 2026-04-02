@@ -12,10 +12,6 @@
 > "Give me six hours to chop down a tree and I will spend the first four sharpening the axe."
 > — Abraham Lincoln (attr.)
 
-## On Thinking Before Acting
-> "Think deeply. Output lightly."
-> — Ron Gross / Jarvis methodology
-
 ## On Doing Less
 > "The best code is no code at all."
 > — Jeff Atwood
