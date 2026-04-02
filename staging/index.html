@@ -7,15 +7,19 @@
     <meta name="description" content="Spec-first AI agent built on OpenClaw by Ron Gross">
     <link rel="stylesheet" href="style.css">
     <style>
+        /* Override page-centered to reduce top padding on desktop */
+        .page-centered { padding-top: 1.5rem; }
         .hero-img {
-            width: 90%;
-            max-width: 560px;
+            width: 80%;
+            max-width: 420px;
             display: block;
-            margin: 0 auto 1.5rem;
+            margin: 0 auto 1rem;
             border-radius: 16px;
             box-shadow: 0 4px 24px rgba(79,70,229,0.08);
             animation: heroFloat 6s ease-in-out infinite, heroFadeIn 1s ease-out;
         }
+        h1 { margin-bottom: 0.5rem; }
+        .grid { margin-top: 0; }
         @keyframes heroFloat {
             0%, 100% { transform: translateY(0); }
             50% { transform: translateY(-8px); }
