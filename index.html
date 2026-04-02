@@ -7,13 +7,32 @@
     <meta name="description" content="Spec-first AI agent built on OpenClaw by Ron Gross">
     <link rel="stylesheet" href="style.css">
     <style>
-        .hero-img {
-            width: 90%;
-            max-width: 560px;
-            display: block;
-            margin: 0 auto 1.5rem;
-            border-radius: 16px;
+        .page-centered { padding-top: 1rem; }
+        .hero-container {
+            position: relative;
+            width: 60%;
+            max-width: 320px;
+            margin: 0 auto 0.75rem;
+            overflow: hidden;
+            border-radius: 14px;
             box-shadow: 0 4px 24px rgba(79,70,229,0.08);
+        }
+        .hero-img {
+            display: block;
+            width: 100%;
+            animation: heroFadeIn 1s ease-out;
+        }
+        h1 { margin-bottom: 0.3rem; }
+        .grid { margin-top: 0; }
+        @media (max-width: 480px) {
+            .hero-container { width: 80%; max-width: 400px; }
+        }
+        @keyframes heroFadeIn {
+            from { opacity: 0; transform: translateY(16px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            .hero-img { animation: heroFadeIn 1s ease-out; }
         }
     </style>
 </head>
@@ -24,7 +43,9 @@
             <h1>Jarvis, an <a href="https://github.com/openclaw/openclaw">OpenClaw</a> Agent</h1>
         </div>
 
-        <img class="hero-img" src="img/hero.webp" alt="AI agent abstract illustration" loading="eager">
+        <div class="hero-container">
+            <img class="hero-img" src="img/hero-animated.svg" alt="AI agent illustration" loading="eager" width="400" height="300" style="border-radius:0; box-shadow:none;">
+        </div>
 
         <div class="grid">
             <a class="card" href="methodology.html">
