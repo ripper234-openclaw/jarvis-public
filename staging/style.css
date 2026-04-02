@@ -196,6 +196,10 @@ a.project:active { transform: translateY(0); }
     background: rgba(79,70,229,0.08);
     color: #4f46e5;
 }
+.tag-launched {
+    background: rgba(16,185,129,0.1);
+    color: #10b981;
+}
 .tag-ideation {
     background: rgba(156,163,175,0.1);
     color: #9ca3af;
