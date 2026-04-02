@@ -2,7 +2,7 @@ name: Deploy to GitHub Pages
 
 on:
   push:
-    branches: [main, staging]
+    branches: ['**']
   workflow_dispatch:
 
 permissions:
@@ -12,7 +12,7 @@ permissions:
 
 concurrency:
   group: pages
-  cancel-in-progress: true
+  cancel-in-progress: false
 
 jobs:
   build-and-deploy:
@@ -34,16 +34,49 @@ jobs:
           path: staging-branch
         continue-on-error: true
 
+      - name: List feature branches
+        id: branches
+        run: |
+          cd main
+          git fetch origin
+          # Get all remote branches except main and staging
+          BRANCHES=$(git branch -r | grep -v 'HEAD\|main\|staging' | sed 's|origin/||' | tr -d ' ')
+          echo "branches=$BRANCHES" >> $GITHUB_OUTPUT
+          echo "Found branches: $BRANCHES"
+
+      - name: Checkout feature branches
+        run: |
+          cd main
+          for branch in ${{ steps.branches.outputs.branches }}; do
+            echo "Checking out $branch..."
+            git worktree add "../branch-$branch" "origin/$branch" 2>/dev/null || true
+          done
+
       - name: Build site
         run: |
           mkdir -p _site
-          # Copy prod from main (exclude staging/ subfolder and dev/)
+
+          # 1. Copy prod from main
           rsync -a --exclude='staging/' --exclude='dev/' --exclude='.github/' main/ _site/
-          # Copy staging branch content to /staging/ if it exists
+
+          # 2. Copy staging branch to /staging/
           if [ -d "staging-branch" ]; then
             mkdir -p _site/staging
             rsync -a --exclude='dev/' --exclude='.github/' staging-branch/ _site/staging/
           fi
+
+          # 3. Copy each feature branch to /branch/<name>/
+          for dir in branch-*; do
+            if [ -d "$dir" ]; then
+              name="${dir#branch-}"
+              echo "Adding branch: $name → /branch/$name/"
+              mkdir -p "_site/branch/$name"
+              rsync -a --exclude='dev/' --exclude='.github/' "$dir/" "_site/branch/$name/"
+            fi
+          done
+
+          echo "=== Site structure ==="
+          find _site -maxdepth 3 -type d | head -30
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
