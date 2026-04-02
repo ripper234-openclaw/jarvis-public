@@ -1,14 +1,23 @@
-# /dev — Jarvis Public Development Knowledge
+# /dev — Development Knowledge Base
 
 Internal reference for building and maintaining the jarvis-public site.
 Not deployed to GitHub Pages (lives in repo only).
 
 ## Contents
 
-- `checklist.md` — Pre-ship checklist for every change
-- `performance.md` — Performance best practices
-- `animation.md` — Animation guidelines and techniques
-- `style-guide.md` — Design system reference (colors, spacing, components)
+| File | What |
+|------|------|
+| `checklist.md` | Pre-ship checklist for every change |
+| `performance.md` | Core Web Vitals, image/CSS/font rules |
+| `animation.md` | Animation dos/don'ts, technique templates |
+| `style-guide.md` | Colors, typography, spacing, components |
+| `tooltips.md` | Tooltip UX: timing, direction, content |
+| `branching.md` | Git/deploy strategy (4 options compared) |
+| `seo.md` | Meta tags, Open Graph, sitemap, structured data |
+| `analytics.md` | Tracking options, what to measure, privacy |
+| `testing.md` | QA process, browser matrix, accessibility |
+| `operations.md` | Deploy, rollback, CDN, versioning, incidents |
+| `content.md` | Writing tone, Hebrew handling, image sourcing |
 
 ## Rules
 
