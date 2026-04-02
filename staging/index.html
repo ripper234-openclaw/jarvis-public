@@ -20,15 +20,7 @@
         .hero-img {
             display: block;
             width: 100%;
-            border-radius: 14px;
-            animation: heroFadeIn 1s ease-out, kenBurns 20s ease-in-out infinite;
-            transform-origin: 45% 40%;
-        }
-        @keyframes kenBurns {
-            0%   { transform: scale(1)    translate(0, 0); }
-            33%  { transform: scale(1.06) translate(-1.5%, 1%); }
-            66%  { transform: scale(1.03) translate(1%, -0.8%); }
-            100% { transform: scale(1)    translate(0, 0); }
+            animation: heroFadeIn 1s ease-out;
         }
         h1 { margin-bottom: 0.3rem; }
         .grid { margin-top: 0; }
@@ -52,7 +44,7 @@
         </div>
 
         <div class="hero-container">
-            <img class="hero-img" src="img/hero.webp" alt="AI agent abstract illustration" loading="eager" width="320" height="213">
+            <img class="hero-img" src="img/hero-animated.svg" alt="AI agent illustration" loading="eager" width="400" height="300" style="border-radius:0; box-shadow:none;">
         </div>
 
         <div class="grid">
