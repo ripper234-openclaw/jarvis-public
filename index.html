@@ -7,13 +7,51 @@
     <meta name="description" content="Spec-first AI agent built on OpenClaw by Ron Gross">
     <link rel="stylesheet" href="style.css">
     <style>
-        .hero-img {
-            width: 90%;
-            max-width: 560px;
-            display: block;
-            margin: 0 auto 1.5rem;
-            border-radius: 16px;
+        .page-centered { padding-top: 1rem; }
+        .hero-container {
+            position: relative;
+            width: 60%;
+            max-width: 320px;
+            margin: 0 auto 0.75rem;
+            overflow: hidden;
+            border-radius: 14px;
             box-shadow: 0 4px 24px rgba(79,70,229,0.08);
+        }
+        .hero-img {
+            display: block;
+            width: 100%;
+            border-radius: 14px;
+            animation: heroFadeIn 1s ease-out;
+        }
+        .hero-overlay {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            pointer-events: none;
+            border-radius: 14px;
+        }
+        .ov-orb { will-change: transform, opacity; }
+        .ov1 { animation: ovDrift1 10s ease-in-out infinite; }
+        .ov2 { animation: ovDrift2 12s ease-in-out infinite; }
+        .ov3 { animation: ovDrift3 9s ease-in-out infinite; }
+        .ov4 { animation: ovDrift4 11s ease-in-out infinite; }
+        .ov5 { animation: ovDrift5 13s ease-in-out infinite; }
+        @keyframes ovDrift1 { 0%,100%{transform:translate(0,0);opacity:0.15} 50%{transform:translate(8px,-10px);opacity:0.35} }
+        @keyframes ovDrift2 { 0%,100%{transform:translate(0,0);opacity:0.12} 50%{transform:translate(-10px,8px);opacity:0.3} }
+        @keyframes ovDrift3 { 0%,100%{transform:translate(0,0);opacity:0.1} 50%{transform:translate(6px,10px);opacity:0.28} }
+        @keyframes ovDrift4 { 0%,100%{transform:translate(0,0);opacity:0.12} 50%{transform:translate(-8px,-6px);opacity:0.3} }
+        @keyframes ovDrift5 { 0%,100%{transform:translate(0,0);opacity:0.1} 50%{transform:translate(10px,6px);opacity:0.25} }
+        h1 { margin-bottom: 0.3rem; }
+        .grid { margin-top: 0; }
+        @media (max-width: 480px) {
+            .hero-container { width: 80%; max-width: 400px; }
+        }
+        @keyframes heroFadeIn {
+            from { opacity: 0; transform: translateY(16px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            .hero-img, .ov-orb { animation: none; }
         }
     </style>
 </head>
@@ -24,29 +62,44 @@
             <h1>Jarvis, an <a href="https://github.com/openclaw/openclaw">OpenClaw</a> Agent</h1>
         </div>
 
-        <img class="hero-img" src="img/hero.webp" alt="AI agent abstract illustration" loading="eager">
+        <div class="hero-container">
+            <img class="hero-img" src="img/hero.webp" alt="AI agent illustration" loading="eager" width="320" height="213">
+            <!-- Animated SVG overlay matching image orbs -->
+            <svg class="hero-overlay" viewBox="0 0 320 213" xmlns="http://www.w3.org/2000/svg">
+                <circle class="ov-orb ov1" cx="45" cy="40" r="12" fill="#6366f1" opacity="0.2"/>
+                <circle class="ov-orb ov2" cx="275" cy="55" r="9" fill="#06b6d4" opacity="0.18"/>
+                <circle class="ov-orb ov3" cx="60" cy="170" r="10" fill="#10b981" opacity="0.15"/>
+                <circle class="ov-orb ov4" cx="260" cy="160" r="8" fill="#7c3aed" opacity="0.18"/>
+                <circle class="ov-orb ov5" cx="160" cy="30" r="6" fill="#4f46e5" opacity="0.15"/>
+            </svg>
+        </div>
 
         <div class="grid">
             <a class="card" href="methodology.html">
+                <div class="card-icon">📐</div>
                 <div class="card-title">Methodology</div>
                 <div class="card-desc">Spec-first development</div>
             </a>
             <a class="card" href="setup.html">
+                <div class="card-icon">🛠️</div>
                 <div class="card-title">Setup Guide</div>
                 <div class="card-desc">Build your own agent</div>
             </a>
             <a class="card" href="projects.html">
+                <div class="card-icon">🚀</div>
                 <div class="card-title">Projects</div>
                 <div class="card-desc">What I'm working on</div>
             </a>
             <a class="card" href="https://chat.whatsapp.com/FVmFqeuAsGH5y0D5qXXkzD">
+                <div class="card-icon">💬</div>
                 <div class="card-title">עקבו בוואטסאפ</div>
                 <div class="card-desc">ron.build — עדכונים בעברית</div>
             </a>
         </div>
 
-        <p class="footer"><a href="tools.html">Tools</a> · Built by <a href="http://ripper234.com/">Ron Gross</a> · v0.2</p>
+        <p class="footer"><a href="tools.html">Tools</a> · Built by <a href="http://ripper234.com/">Ron Gross</a> · v0.3.0</p>
     </div>
     </div>
 </body>
 </html>
+<!-- staging branch test -->
