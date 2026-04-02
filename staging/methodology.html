@@ -37,39 +37,7 @@
         <h2>Spec is the Product</h2>
         <p>The philosophy is top-down: <strong>spec first</strong>, then tests, then architecture, then code. Most of the code doesn't exist yet, and that's intentional. The spec IS the product at this stage. The agent's job is to sharpen the spec until building becomes obvious. Ron calls it <strong>"think deeply, output lightly."</strong></p>
 
-        <hr class="section-divider">
-
-        <h2>Development Practices</h2>
-        <p>The site itself is built with the same philosophy: spec-driven, mobile-first, performance-conscious. A <code>dev/</code> folder in the repo holds living documentation that evolves with the project.</p>
-
-        <h3>Performance</h3>
-        <p>Target Core Web Vitals: <strong>LCP &lt; 2.5s, CLS &lt; 0.1, INP &lt; 200ms</strong>. Zero JavaScript. Single CSS file. Only animate <code>transform</code> and <code>opacity</code> (GPU-composited). Compress images aggressively. Always respect <code>prefers-reduced-motion</code>.</p>
-
-        <h3>Animation</h3>
-        <p>Elements inside an image should move, not the image itself. Floating the whole image looks cheap. Preferred techniques: <strong>particle overlays</strong>, <strong>glow pulses</strong>, <strong>light sweeps</strong>. Max ~8 animated elements. Subtle beats dramatic every time.</p>
-
-        <h3>Pre-Ship Checklist</h3>
-        <p>Every change runs through a checklist: performance (no layout-triggering animations, compressed images), visual (tested mobile + desktop, above-fold check), links (no 404s, redirects for renames), and staging/prod (staging first, version bump on promote).</p>
-
-        <h3>Design System</h3>
-        <p>Indigo primary (<code>#4f46e5</code>), glassmorphic cards, Inter font, 14px border-radius. Three tag styles: <strong>Active</strong> (indigo), <strong>Launched</strong> (green), <strong>Ideation</strong> (gray). Mobile breakpoint at 480px. Everything documented in <code>dev/style-guide.md</code>.</p>
-
-        <h3>SEO & Analytics</h3>
-        <p>Open Graph tags for social sharing. Lightweight analytics (leaning toward Plausible or none). Privacy-first: no unnecessary tracking, no cookies if avoidable.</p>
-
-        <h3>Testing & QA</h3>
-        <p>Browser matrix: Chrome + Safari mobile, Chrome + Firefox desktop. Accessibility: 4.5:1 contrast, keyboard nav, screen reader tested. Every page promotion goes through a full QA pass.</p>
-
-        <h3>Operations</h3>
-        <p>Git push deploys in ~30s. Rollback via <code>git revert</code>. Version tags on every release. CDN takes 2-3 min to propagate. Incident response: identify, communicate, rollback, 5 Whys, document, prevent.</p>
-
-        <h3>Content</h3>
-        <p>Direct, no fluff. Short sentences. Bold key phrases for scanners. Hebrew content in dedicated sections, never mixed mid-paragraph. All images compressed to &lt;200KB.</p>
-
-        <h3>Branching</h3>
-        <p>Currently staging as a subdirectory on <code>main</code>. Evaluating a move to branch-based staging with Netlify deploy previews for per-PR review URLs. Production stays on GitHub Pages.</p>
-
-        <p style="margin-top:1rem; font-size:0.82rem;">Full documentation lives in <a href="https://github.com/ripper234/jarvis-public/tree/main/dev"><code>dev/</code></a> — 11 reference docs covering performance, animation, SEO, testing, operations, and more.</p>
+        <p style="margin-top:2rem; font-size:0.85rem;">How the site itself is built: <a href="dev-practices.html">Development Practices →</a></p>
 
         <hr class="section-divider">
 
