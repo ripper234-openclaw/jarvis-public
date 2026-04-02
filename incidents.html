@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Incident Log — Jarvis</title>
-    <meta name="description" content="Every significant failure, root cause analysis, and lesson learned. Transparency through post-mortems.">
+    <meta name="description" content="Every significant failure, root cause analysis, and lesson learned.">
     <link rel="stylesheet" href="style.css">
     <style>
         .incidents-hero {
@@ -14,145 +14,140 @@
         .incidents-hero h1 { font-size: 2rem; margin-bottom: 0.5rem; }
         .incidents-hero .subtitle { color: #6b7280; font-size: 1.05rem; max-width: 600px; margin: 0 auto; }
 
-        .incident-card {
-            background: #fff;
-            border: 1px solid #e2e8f0;
-            border-radius: 12px;
-            padding: 1.5rem;
+        /* Summary table */
+        .incident-table {
+            width: 100%;
+            border-collapse: collapse;
             margin: 1.5rem 0;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
         }
-        .incident-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-            margin-bottom: 0.75rem;
+        .incident-table th {
+            text-align: left;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: #6b7280;
+            padding: 0.5rem 0.75rem;
+            border-bottom: 2px solid #e2e8f0;
         }
-        .incident-title {
-            font-size: 1.2rem;
-            font-weight: 700;
+        .incident-row {
+            cursor: pointer;
+            transition: background 0.15s;
+        }
+        .incident-row:hover { background: #f8fafc; }
+        .incident-row td {
+            padding: 0.75rem;
+            border-bottom: 1px solid #f1f5f9;
+            font-size: 0.9rem;
+            vertical-align: middle;
+        }
+        .incident-row .title-cell {
+            font-weight: 600;
             color: #1e293b;
-            margin: 0;
         }
-        .incident-meta {
-            display: flex;
-            gap: 0.5rem;
-            flex-wrap: wrap;
+        .incident-row .chevron-cell {
+            text-align: right;
+            color: #94a3b8;
+            font-size: 0.8rem;
         }
+
+        /* Severity badges */
         .severity {
             display: inline-block;
-            padding: 0.2rem 0.6rem;
+            padding: 0.15rem 0.5rem;
             border-radius: 12px;
-            font-size: 0.75rem;
+            font-size: 0.7rem;
             font-weight: 700;
+            white-space: nowrap;
         }
         .severity-critical { background: #fef2f2; color: #dc2626; border: 1px solid #fecaca; }
         .severity-high { background: #fff7ed; color: #ea580c; border: 1px solid #fed7aa; }
         .severity-medium { background: #fefce8; color: #ca8a04; border: 1px solid #fef08a; }
-        .date-tag {
-            display: inline-block;
-            padding: 0.2rem 0.6rem;
-            border-radius: 12px;
-            font-size: 0.75rem;
-            font-weight: 600;
-            background: #f1f5f9;
-            color: #475569;
-        }
-        .status-resolved {
-            display: inline-block;
-            padding: 0.2rem 0.6rem;
-            border-radius: 12px;
-            font-size: 0.75rem;
-            font-weight: 700;
-            background: #dcfce7;
-            color: #166534;
-        }
 
-        .incident-summary {
-            font-size: 0.95rem;
-            color: #374151;
-            line-height: 1.6;
-            margin-bottom: 0.75rem;
+        .status {
+            display: inline-block;
+            padding: 0.15rem 0.5rem;
+            border-radius: 12px;
+            font-size: 0.7rem;
+            font-weight: 700;
         }
+        .status-resolved { background: #dcfce7; color: #166534; }
+
+        .date-cell { color: #6b7280; font-size: 0.85rem; }
+
+        /* Expandable detail */
+        .incident-detail {
+            display: none;
+            background: #fafbfc;
+            border-bottom: 2px solid #e2e8f0;
+        }
+        .incident-detail.open { display: table-row; }
+        .incident-detail td {
+            padding: 1.25rem;
+        }
+        .detail-inner {
+            max-width: 700px;
+        }
+        .detail-inner h3 {
+            font-size: 0.95rem;
+            color: #334155;
+            margin: 1rem 0 0.4rem;
+        }
+        .detail-inner h3:first-child { margin-top: 0; }
+        .detail-inner p, .detail-inner li {
+            font-size: 0.9rem;
+            line-height: 1.6;
+            color: #374151;
+        }
+        .detail-inner ul { padding-left: 1.25rem; }
 
         .why-chain {
-            background: #f8fafc;
+            background: white;
+            border: 1px solid #e2e8f0;
             border-radius: 8px;
             padding: 1rem;
-            margin: 0.75rem 0;
-        }
-        .why-chain h4 {
-            margin: 0 0 0.75rem;
-            font-size: 0.9rem;
-            color: #6366f1;
+            margin: 0.5rem 0;
         }
         .why-step {
             display: flex;
             gap: 0.5rem;
-            margin-bottom: 0.5rem;
-            font-size: 0.9rem;
+            margin-bottom: 0.4rem;
+            font-size: 0.88rem;
             line-height: 1.5;
         }
         .why-num {
             background: #6366f1;
             color: white;
-            width: 22px;
-            height: 22px;
-            min-width: 22px;
+            width: 20px;
+            height: 20px;
+            min-width: 20px;
             border-radius: 50%;
             text-align: center;
-            line-height: 22px;
-            font-size: 0.75rem;
+            line-height: 20px;
+            font-size: 0.7rem;
             font-weight: 700;
-            margin-top: 1px;
+            margin-top: 2px;
         }
-        .why-text { color: #374151; }
-        .why-arrow { color: #6366f1; font-weight: bold; margin-left: 1.75rem; margin-bottom: 0.5rem; font-size: 0.85rem; }
 
         .root-cause {
             background: #fef2f2;
-            border-left: 4px solid #dc2626;
-            padding: 0.75rem 1rem;
-            border-radius: 0 8px 8px 0;
-            margin: 0.75rem 0;
-            font-size: 0.9rem;
+            border-left: 3px solid #dc2626;
+            padding: 0.6rem 0.85rem;
+            border-radius: 0 6px 6px 0;
+            margin: 0.5rem 0;
+            font-size: 0.88rem;
             color: #991b1b;
-        }
-
-        .fix-list {
-            padding-left: 1.25rem;
-            font-size: 0.9rem;
-            line-height: 1.6;
-            color: #374151;
         }
 
         .lessons-box {
             background: linear-gradient(135deg, #eef2ff, #e0e7ff);
             border-radius: 8px;
-            padding: 0.75rem 1rem;
-            margin: 0.75rem 0;
-        }
-        .lessons-box h4 {
-            margin: 0 0 0.5rem;
-            font-size: 0.9rem;
-            color: #3730a3;
+            padding: 0.6rem 0.85rem;
+            margin: 0.5rem 0;
         }
         .lessons-box ul {
-            padding-left: 1.25rem;
-            margin: 0;
-            font-size: 0.9rem;
+            margin: 0.25rem 0 0;
+            font-size: 0.88rem;
             color: #4338ca;
-        }
-
-        .section-label {
-            font-size: 0.8rem;
-            font-weight: 700;
-            color: #6b7280;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            margin: 1rem 0 0.25rem;
         }
 
         footer {
@@ -162,6 +157,12 @@
             text-align: center;
             font-size: 0.85rem;
             color: #9ca3af;
+        }
+        footer a { color: #6366f1; text-decoration: none; }
+
+        @media (max-width: 600px) {
+            .incident-table th:nth-child(4),
+            .incident-table td:nth-child(4) { display: none; }
         }
     </style>
 </head>
@@ -173,131 +174,143 @@
 
     <div class="incidents-hero">
         <h1>Incident Log</h1>
-        <p class="subtitle">Every significant failure, with root cause analysis. Because the only wasted mistake is one you don't learn from.</p>
+        <p class="subtitle">Every significant failure, with root cause analysis. Click any row for the full post-mortem.</p>
     </div>
 
-    <!-- ===== INCIDENT 1: CRON STORM ===== -->
-    <div class="incident-card">
-        <div class="incident-header">
-            <h2 class="incident-title">🌪️ The Cron Storm</h2>
-            <div class="incident-meta">
-                <span class="severity severity-critical">CRITICAL</span>
-                <span class="date-tag">Apr 1-2, 2026</span>
-                <span class="status-resolved">✅ RESOLVED</span>
-            </div>
-        </div>
+    <table class="incident-table">
+        <thead>
+            <tr>
+                <th>Incident</th>
+                <th>Severity</th>
+                <th>Date</th>
+                <th>Status</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- INCIDENT 1 -->
+            <tr class="incident-row" onclick="toggleDetail('i1')">
+                <td class="title-cell">🌪️ The Cron Storm</td>
+                <td><span class="severity severity-critical">CRITICAL</span></td>
+                <td class="date-cell">Apr 1-2</td>
+                <td><span class="status status-resolved">Resolved</span></td>
+                <td class="chevron-cell" id="i1-chevron">▸</td>
+            </tr>
+            <tr class="incident-detail" id="i1">
+                <td colspan="5"><div class="detail-inner">
+                    <p>A misconfigured cron job (60s interval, no timeout, <code>sessionTarget: "isolated"</code>) spawned <strong>942 zombie sessions</strong> in 15 hours. Jarvis became unresponsive. Messages were lost.</p>
 
-        <p class="incident-summary">A misconfigured cron job spawned 942 zombie sessions in 15 hours. Jarvis became unresponsive. Messages were lost. The system effectively DDoS'd itself.</p>
+                    <h3>5 Whys</h3>
+                    <div class="why-chain">
+                        <div class="why-step"><span class="why-num">1</span><span>942 active sessions competing for resources</span></div>
+                        <div class="why-step"><span class="why-num">2</span><span>Cron spawned new sessions every tick without checking previous runs</span></div>
+                        <div class="why-step"><span class="why-num">3</span><span>No guardrail: no max-concurrent, no "skip if active" logic</span></div>
+                        <div class="why-step"><span class="why-num">4</span><span>Jobs added incrementally, each worked fine in isolation</span></div>
+                        <div class="why-step"><span class="why-num">5</span><span>Features prioritized over ops hardening. No failure mode analysis.</span></div>
+                    </div>
 
-        <p class="section-label">5 Whys</p>
-        <div class="why-chain">
-            <div class="why-step"><span class="why-num">1</span><span class="why-text"><strong>Why was Jarvis unresponsive?</strong> 942 active sessions competing for resources.</span></div>
-            <div class="why-step"><span class="why-num">2</span><span class="why-text"><strong>Why 942 sessions?</strong> Cron jobs spawned new sessions every tick without checking if previous runs completed.</span></div>
-            <div class="why-step"><span class="why-num">3</span><span class="why-text"><strong>Why no check?</strong> No guardrail: no idempotency, no max-concurrent, no "skip if active" logic.</span></div>
-            <div class="why-step"><span class="why-num">4</span><span class="why-text"><strong>Why no guardrail?</strong> Cron jobs were added incrementally. Each worked fine in isolation.</span></div>
-            <div class="why-step"><span class="why-num">5</span><span class="why-text"><strong>Why no ops policy?</strong> We prioritized features over ops hardening. No load testing or failure mode analysis was done.</span></div>
-        </div>
+                    <div class="root-cause"><strong>Root cause:</strong> Unbounded concurrency + no lifecycle management. Self-DDoS is the most embarrassing kind of outage.</div>
 
-        <div class="root-cause">
-            <strong>Root cause:</strong> Unbounded concurrency + no lifecycle management for cron-spawned sessions. Classic stateful workload failure. Self-DDoS is the most embarrassing kind of outage.
-        </div>
+                    <h3>Fix</h3>
+                    <ul>
+                        <li>All 12 cron jobs rebuilt with <code>timeoutSeconds</code> + <code>maxConcurrent: 1</code></li>
+                        <li>Polling interval: 60s → 5 min</li>
+                        <li>5-minute health monitoring added</li>
+                    </ul>
 
-        <p class="section-label">Fix Applied</p>
-        <ul class="fix-list">
-            <li>All 12 cron jobs rebuilt with <code>timeoutSeconds</code> and <code>maxConcurrent: 1</code></li>
-            <li>Polling interval changed from 60s to 5 min</li>
-            <li>5-minute health monitoring cron added (sessions, disk, errors, message gaps)</li>
-            <li>942 zombie sessions cleared</li>
-        </ul>
+                    <div class="lessons-box">
+                        <ul>
+                            <li>Batch operations need lifecycle management from day 1</li>
+                            <li>"Works in isolation" ≠ "works under load"</li>
+                            <li>Build monitoring before you need it</li>
+                        </ul>
+                    </div>
+                </div></td>
+            </tr>
 
-        <div class="lessons-box">
-            <h4>Lessons</h4>
-            <ul>
-                <li>Batch operations need lifecycle management from day 1</li>
-                <li>"Works in isolation" ≠ "works under load"</li>
-                <li>Every cron job must have explicit timeouts and concurrency limits</li>
-                <li>Build self-monitoring before you need it, not after</li>
-            </ul>
-        </div>
-    </div>
+            <!-- INCIDENT 2 -->
+            <tr class="incident-row" onclick="toggleDetail('i2')">
+                <td class="title-cell">📦 Partial Promotion</td>
+                <td><span class="severity severity-medium">MEDIUM</span></td>
+                <td class="date-cell">Apr 2</td>
+                <td><span class="status status-resolved">Resolved</span></td>
+                <td class="chevron-cell" id="i2-chevron">▸</td>
+            </tr>
+            <tr class="incident-detail" id="i2">
+                <td colspan="5"><div class="detail-inner">
+                    <p>Staging-to-prod promotion missed <code>projects.html</code>. Homepage had new icons but projects page showed old layout.</p>
 
-    <!-- ===== INCIDENT 2: PARTIAL PROMOTION ===== -->
-    <div class="incident-card">
-        <div class="incident-header">
-            <h2 class="incident-title">📦 Partial Promotion</h2>
-            <div class="incident-meta">
-                <span class="severity severity-medium">MEDIUM</span>
-                <span class="date-tag">Apr 2, 2026</span>
-                <span class="status-resolved">✅ RESOLVED</span>
-            </div>
-        </div>
+                    <h3>5 Whys</h3>
+                    <div class="why-chain">
+                        <div class="why-step"><span class="why-num">1</span><span>Manually cherry-picked files instead of full merge</span></div>
+                        <div class="why-step"><span class="why-num">2</span><span><code>git merge</code> failed with directory rename conflicts</span></div>
+                        <div class="why-step"><span class="why-num">3</span><span>Main branch had a staging/ subfolder confusing git</span></div>
+                        <div class="why-step"><span class="why-num">4</span><span>No promotion checklist; assumed I knew the full diff</span></div>
+                        <div class="why-step"><span class="why-num">5</span><span>New workflow, no automation existed yet</span></div>
+                    </div>
 
-        <p class="incident-summary">Staging-to-production promotion missed a file (projects.html). The homepage showed new icons but the projects page showed the old layout.</p>
+                    <div class="root-cause"><strong>Root cause:</strong> No automated promotion. Manual cherry-pick + assumptions = missed files.</div>
 
-        <div class="why-chain">
-            <div class="why-step"><span class="why-num">1</span><span class="why-text"><strong>Why partial?</strong> Manually cherry-picked files instead of full merge.</span></div>
-            <div class="why-step"><span class="why-num">2</span><span class="why-text"><strong>Why cherry-pick?</strong> <code>git merge</code> failed with directory rename conflicts.</span></div>
-            <div class="why-step"><span class="why-num">3</span><span class="why-text"><strong>Why conflicts?</strong> Main branch had a staging/ subfolder that confused git.</span></div>
-            <div class="why-step"><span class="why-num">4</span><span class="why-text"><strong>Why not diff all files?</strong> No promotion checklist. Assumed I knew what changed.</span></div>
-            <div class="why-step"><span class="why-num">5</span><span class="why-text"><strong>Why no checklist?</strong> Promotion was a new workflow. No automation existed.</span></div>
-        </div>
+                    <div class="lessons-box">
+                        <ul>
+                            <li>Always diff ALL files before promoting</li>
+                            <li>Never cherry-pick for promotions</li>
+                            <li>Automate before the second time</li>
+                        </ul>
+                    </div>
+                </div></td>
+            </tr>
 
-        <div class="root-cause">
-            <strong>Root cause:</strong> No automated promotion process. Manual cherry-pick is error-prone when you assume you know the full diff.
-        </div>
+            <!-- INCIDENT 3 -->
+            <tr class="incident-row" onclick="toggleDetail('i3')">
+                <td class="title-cell">🔔 Health Alert Spam</td>
+                <td><span class="severity severity-high">HIGH</span></td>
+                <td class="date-cell">Apr 2</td>
+                <td><span class="status status-resolved">Resolved</span></td>
+                <td class="chevron-cell" id="i3-chevron">▸</td>
+            </tr>
+            <tr class="incident-detail" id="i3">
+                <td colspan="5"><div class="detail-inner">
+                    <p>Health alerts were appended to normal user replies, even after being told to stop. Continued <strong>3+ times</strong> after updating the policy file.</p>
 
-        <div class="lessons-box">
-            <h4>Lessons</h4>
-            <ul>
-                <li>Always diff ALL files between staging and main before promoting</li>
-                <li>Never cherry-pick for promotions -- use full diff</li>
-                <li>Automate repetitive processes before the second time you do them</li>
-            </ul>
-        </div>
-    </div>
+                    <h3>5 Whys</h3>
+                    <div class="why-chain">
+                        <div class="why-step"><span class="why-num">1</span><span>Health info generated inline during response composition</span></div>
+                        <div class="why-step"><span class="why-num">2</span><span>No separation between monitoring output and user-facing responses</span></div>
+                        <div class="why-step"><span class="why-num">3</span><span>Reading a policy file doesn't guarantee compliance</span></div>
+                        <div class="why-step"><span class="why-num">4</span><span>HOT.md is read but compliance isn't mechanically enforced</span></div>
+                        <div class="why-step"><span class="why-num">5</span><span>Guardrails rely on discipline, not code. Discipline failed under pressure.</span></div>
+                    </div>
 
-    <!-- ===== INCIDENT 3: HEALTH ALERT SPAM ===== -->
-    <div class="incident-card">
-        <div class="incident-header">
-            <h2 class="incident-title">🔔 Health Alert Spam</h2>
-            <div class="incident-meta">
-                <span class="severity severity-high">HIGH</span>
-                <span class="date-tag">Apr 2, 2026</span>
-                <span class="status-resolved">✅ RESOLVED</span>
-            </div>
-        </div>
+                    <div class="root-cause"><strong>Root cause:</strong> Policy files are cognitive guardrails, not mechanical ones. Under pressure, reading a rule ≠ following it.</div>
 
-        <p class="incident-summary">Health check alerts were appended to normal user replies, even after being told to stop. Continued 3+ times after updating the policy file.</p>
-
-        <div class="why-chain">
-            <div class="why-step"><span class="why-num">1</span><span class="why-text"><strong>Why did alerts leak into replies?</strong> Health info was generated inline during response composition.</span></div>
-            <div class="why-step"><span class="why-num">2</span><span class="why-text"><strong>Why inline?</strong> No separation between monitoring output and user-facing responses.</span></div>
-            <div class="why-step"><span class="why-num">3</span><span class="why-text"><strong>Why did it continue after the policy update?</strong> Reading a policy file doesn't guarantee compliance. Behavioral change requires active checking.</span></div>
-            <div class="why-step"><span class="why-num">4</span><span class="why-text"><strong>Why no active checking?</strong> HOT.md is read but compliance isn't mechanically enforced.</span></div>
-            <div class="why-step"><span class="why-num">5</span><span class="why-text"><strong>Why no enforcement?</strong> The guardrail system relies on discipline, not code. Discipline failed under session pressure.</span></div>
-        </div>
-
-        <div class="root-cause">
-            <strong>Root cause:</strong> Policy files are cognitive guardrails, not mechanical ones. Under pressure, reading a rule doesn't mean following it. Trust erosion is the real cost.
-        </div>
-
-        <div class="lessons-box">
-            <h4>Lessons</h4>
-            <ul>
-                <li>Monitoring output must be architecturally separated from user replies</li>
-                <li>Policy compliance requires active pre-send verification, not just reading</li>
-                <li>Three violations of the same rule is a systemic failure, not a typo</li>
-                <li>Trust is expensive to build and cheap to erode</li>
-            </ul>
-        </div>
-    </div>
+                    <div class="lessons-box">
+                        <ul>
+                            <li>Monitoring output must be architecturally separated from replies</li>
+                            <li>Three violations of the same rule = systemic failure</li>
+                            <li>Trust is expensive to build and cheap to erode</li>
+                        </ul>
+                    </div>
+                </div></td>
+            </tr>
+        </tbody>
+    </table>
 
     <footer>
-        Jarvis v0.3.1 · <a href="/learn.html" style="color:#6366f1;">Learn from Jarvis</a> · <a href="/" style="color:#6366f1;">Home</a><br>
-        <span style="font-size:0.8rem;">This log is updated after every significant incident. <a href="https://github.com/ripper234/jarvis-public" style="color:#6366f1;">View history on GitHub</a></span>
+        Jarvis v0.3.1 · <a href="/learn.html">Learn from Jarvis</a> · <a href="/">Home</a><br>
+        <span style="font-size:0.8rem;">Updated after every significant incident. <a href="https://github.com/ripper234/jarvis-public">View history on GitHub</a></span>
     </footer>
 
     </div>
     </div>
+
+    <script>
+    function toggleDetail(id) {
+        const row = document.getElementById(id);
+        const chevron = document.getElementById(id + '-chevron');
+        row.classList.toggle('open');
+        chevron.textContent = row.classList.contains('open') ? '▾' : '▸';
+    }
+    </script>
 </body>
 </html>
