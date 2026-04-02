@@ -14,6 +14,15 @@
             margin: 0 auto 1.5rem;
             border-radius: 16px;
             box-shadow: 0 4px 24px rgba(79,70,229,0.08);
+            animation: heroFloat 6s ease-in-out infinite, heroFadeIn 1s ease-out;
+        }
+        @keyframes heroFloat {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+        }
+        @keyframes heroFadeIn {
+            from { opacity: 0; transform: translateY(16px); }
+            to { opacity: 1; transform: translateY(0); }
         }
     </style>
 </head>
