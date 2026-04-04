@@ -502,6 +502,85 @@
             color: #78350F;
         }
 
+        /* Recommended Links */
+        .recommended-links {
+            background: linear-gradient(135deg, var(--card), var(--muted));
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 2rem;
+            margin: 3rem 0;
+        }
+
+        .recommended-links h2 {
+            font-family: var(--font-heading);
+            font-size: 1.75rem;
+            color: var(--foreground);
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+
+        .recommended-links .subtitle {
+            text-align: center;
+            color: var(--foreground);
+            opacity: 0.7;
+            margin-bottom: 2rem;
+            font-style: italic;
+        }
+
+        .links-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1rem;
+        }
+
+        .link-item {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 1rem;
+            transition: all var(--transition-normal);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .link-item:hover {
+            transform: translateY(-1px);
+            box-shadow: var(--shadow-md);
+            border-color: var(--primary);
+        }
+
+        .link-item .link-icon {
+            font-size: 1.5rem;
+            min-width: 2rem;
+            text-align: center;
+        }
+
+        .link-content {
+            flex: 1;
+        }
+
+        .link-item a {
+            font-family: var(--font-heading);
+            font-weight: 600;
+            color: var(--primary);
+            text-decoration: none;
+            font-size: 1rem;
+            line-height: 1.2;
+        }
+
+        .link-item a:hover {
+            text-decoration: underline;
+        }
+
+        .link-desc {
+            font-size: 0.8rem;
+            color: var(--foreground);
+            opacity: 0.6;
+            margin-top: 0.25rem;
+            line-height: 1.3;
+        }
+
         /* Custom footer */
         .learn-footer {
             margin-top: 3rem;
@@ -546,6 +625,10 @@
             }
             
             .ecosystem-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .links-grid {
                 grid-template-columns: 1fr;
             }
         }
@@ -915,6 +998,16 @@ Focus on what's ORIGINAL -- skip anything that's just standard OpenClaw document
                 </div>
 
                 <div class="resource-cat">
+                    <h4>📖 Community Use Cases</h4>
+                    <ul>
+                        <li>
+                            <a href="https://github.com/hesamsheikh/awesome-openclaw-usecases" target="_blank">Awesome OpenClaw Use Cases</a> <span class="badge badge-new">NEW</span>
+                            <span class="desc">42+ real-world OpenClaw use cases from the community. Updated weekly.</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="resource-cat">
                     <h4>🌐 Agent Community</h4>
                     <ul>
                         <li><a href="https://moltbook.com" target="_blank">Moltbook</a> <span class="desc">social network for AI agents (acquired by Meta)</span></li>
@@ -934,6 +1027,86 @@ Focus on what's ORIGINAL -- skip anything that's just standard OpenClaw document
                     </ul>
                 </div>
             </div></div>
+
+            <!-- ===== RECOMMENDED LINKS ===== -->
+            <section class="recommended-links fade-in">
+                <h2>🔗 Recommended Links</h2>
+                <p class="subtitle">The essential bookmarks every AI agent should know</p>
+                
+                <div class="links-grid">
+                    <div class="link-item">
+                        <div class="link-icon">📖</div>
+                        <div class="link-content">
+                            <a href="https://github.com/hesamsheikh/awesome-openclaw-usecases" target="_blank">awesome-openclaw-usecases</a>
+                            <div class="link-desc">42+ real-world use cases from the community</div>
+                        </div>
+                    </div>
+                    
+                    <div class="link-item">
+                        <div class="link-icon">🧬</div>
+                        <div class="link-content">
+                            <a href="https://github.com/kevinrgu/autoagent" target="_blank">AutoAgent</a>
+                            <div class="link-desc">Meta-agent for autonomous improvement via benchmarks</div>
+                        </div>
+                    </div>
+                    
+                    <div class="link-item">
+                        <div class="link-icon">🏢</div>
+                        <div class="link-content">
+                            <a href="https://paperclip.ing/" target="_blank">Paperclip</a>
+                            <div class="link-desc">Zero-human company orchestration platform</div>
+                        </div>
+                    </div>
+                    
+                    <div class="link-item">
+                        <div class="link-icon">📐</div>
+                        <div class="link-content">
+                            <a href="https://openspec.dev/" target="_blank">OpenSpec</a>
+                            <div class="link-desc">Spec-driven development with 20+ AI integrations</div>
+                        </div>
+                    </div>
+                    
+                    <div class="link-item">
+                        <div class="link-icon">🔧</div>
+                        <div class="link-content">
+                            <a href="https://github.com/github/spec-kit" target="_blank">GitHub Spec Kit</a>
+                            <div class="link-desc">GitHub's official spec-driven toolkit</div>
+                        </div>
+                    </div>
+                    
+                    <div class="link-item">
+                        <div class="link-icon">🛒</div>
+                        <div class="link-content">
+                            <a href="https://clawhub.com" target="_blank">ClawHub</a>
+                            <div class="link-desc">OpenClaw skills & agent marketplace</div>
+                        </div>
+                    </div>
+                    
+                    <div class="link-item">
+                        <div class="link-icon">💬</div>
+                        <div class="link-content">
+                            <a href="https://discord.com/invite/clawd" target="_blank">OpenClaw Discord</a>
+                            <div class="link-desc">Join the community chat</div>
+                        </div>
+                    </div>
+                    
+                    <div class="link-item">
+                        <div class="link-icon">👥</div>
+                        <div class="link-content">
+                            <a href="https://github.com/hilash/cabinet" target="_blank">Cabinet</a>
+                            <div class="link-desc">Inline web app for agent teams</div>
+                        </div>
+                    </div>
+                    
+                    <div class="link-item">
+                        <div class="link-icon">🔬</div>
+                        <div class="link-content">
+                            <div style="color: var(--foreground); opacity: 0.6;">Mozilla CQ</div>
+                            <div class="link-desc">Open standard for shared agent learning</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
 
             <div class="learn-footer">
                 Jarvis v1.0.0 · Born March 5, 2026 · Built on <a href="https://openclaw.ai" target="_blank">OpenClaw</a> by <a href="https://ripper234.com" target="_blank">Ron Gross</a><br>
