@@ -1124,6 +1124,44 @@
 
         allPosts = posts;
 
+        // ─── Single post mode ───
+        const singlePostNum = getSinglePostParam();
+        if (singlePostNum) {
+          const singlePost = posts.find(p => p.num === singlePostNum);
+          if (!singlePost) {
+            container.innerHTML = `
+              <div class="blog-error">
+                <p>😔 פוסט מספר ${escapeHTML(singlePostNum)} לא נמצא</p>
+                <p style="margin-top:0.5rem;"><a href="ronbuild.html">← כל הפוסטים</a></p>
+              </div>`;
+            return;
+          }
+
+          applySinglePostView(singlePost);
+
+          const postId = 'post-' + singlePost.num;
+          const readingTime = estimateReadingTime(singlePost.content);
+
+          container.innerHTML = `<div class="blog-posts">
+            <a href="ronbuild.html" class="single-post-back">← כל הפוסטים</a>
+            <article class="blog-post visible" id="${postId}">
+              <div class="post-meta">
+                <span class="post-date">${formatDate(singlePost.date)}</span>
+                <span class="reading-time">${readingTime} דק׳ קריאה</span>
+              </div>
+              <h2 class="post-title">${escapeHTML(singlePost.title)}</h2>
+              ${singlePost.tldr ? `<div class="post-tldr">${escapeHTML(singlePost.tldr)}</div>` : ''}
+              <div class="post-content">${formatContent(singlePost.content)}</div>
+              <div class="post-footer">
+                <button class="share-btn" onclick="sharePost('${escapeHTML(singlePost.num)}', this)">🔗 קישור</button>
+              </div>
+            </article>
+          </div>`;
+          return;
+        }
+
+        // ─── Normal blog view ───
+
         // Post count badge
         const countEl = document.getElementById('postCount');
         countEl.textContent = `${posts.length} פוסטים`;
@@ -1137,13 +1175,15 @@
         const tocList = document.getElementById('tocList');
         tocEl.style.display = '';
         tocList.innerHTML = posts.map((post, i) => {
-          const postId = 'post-' + (post.num || (i + 1));
-          return `<li class="toc-item"><a href="#${postId}"><span class="toc-num">${post.num || (i + 1)}</span> ${escapeHTML(post.title)}</a></li>`;
+          const postNum = post.num || (i + 1);
+          const postId = 'post-' + postNum;
+          return `<li class="toc-item"><a href="?post=${postNum}"><span class="toc-num">${postNum}</span> ${escapeHTML(post.title)}</a></li>`;
         }).join('');
 
         // Build posts HTML
         const postsHTML = posts.map((post, i) => {
-          const postId = 'post-' + (post.num || (i + 1));
+          const postNum = post.num || (i + 1);
+          const postId = 'post-' + postNum;
           const readingTime = estimateReadingTime(post.content);
           const isHero = i === 0;
           const searchable = (post.title + ' ' + post.tldr + ' ' + post.content).toLowerCase();
@@ -1155,11 +1195,11 @@
               <span class="post-date">${formatDate(post.date)}</span>
               <span class="reading-time">${readingTime} דק׳ קריאה</span>
             </div>
-            <h2 class="post-title"><a href="#${postId}">${escapeHTML(post.title)}</a></h2>
+            <h2 class="post-title"><a href="?post=${postNum}">${escapeHTML(post.title)}</a></h2>
             ${post.tldr ? `<div class="post-tldr">${escapeHTML(post.tldr)}</div>` : ''}
             <div class="post-actions">
               <span class="post-toggle" onclick="togglePost(this)"><span class="arrow">◀</span> קרא עוד</span>
-              <button class="share-btn" onclick="sharePost('${postId}', this)">🔗 קישור</button>
+              <button class="share-btn" onclick="sharePost('${escapeHTML(String(postNum))}', this)">🔗 קישור</button>
             </div>
             <div class="post-content" style="display:none">${formatContent(post.content)}</div>
           </article>`;
