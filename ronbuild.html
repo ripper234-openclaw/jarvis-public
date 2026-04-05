@@ -890,6 +890,13 @@
     function formatContent(text) {
       if (!text) return '';
 
+      // Strip poll blocks: lines starting with "סקר" followed by numbered emoji options (1️⃣ 2️⃣ etc)
+      text = text.replace(/סקר[^\n]*\n+(?:"[^"]*"\n+)?(?:(?:[1-9]️⃣|[0-9]️⃣)[^\n]*\n*)+/g, '');
+      // Also strip standalone numbered emoji option lines
+      text = text.replace(/^(?:[1-9]️⃣|[0-9]️⃣)[^\n]*$/gm, '');
+      // Clean up excess blank lines left after stripping
+      text = text.replace(/\n{3,}/g, '\n\n').trim();
+
       let html = text
         .replace(/\n\s*-\s*\n/g, '\n<hr>\n')
         .replace(/\*([^*]+)\*/g, '<strong>$1</strong>')
