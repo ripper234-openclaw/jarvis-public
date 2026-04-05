@@ -432,6 +432,32 @@
       border-bottom: 1px solid var(--border);
     }
 
+    .post-toggle {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--accent);
+      cursor: pointer;
+      margin-bottom: 1rem;
+      user-select: none;
+      transition: opacity 0.15s;
+    }
+
+    .post-toggle:hover {
+      opacity: 0.7;
+    }
+
+    .post-toggle .arrow {
+      display: inline-block;
+      transition: transform 0.2s;
+    }
+
+    .post-toggle.expanded .arrow {
+      transform: rotate(90deg);
+    }
+
     .post-content {
       font-size: 1rem;
       line-height: 1.85;
@@ -921,6 +947,16 @@
       return html;
     }
 
+    function togglePost(btn) {
+      const content = btn.nextElementSibling;
+      const isHidden = content.style.display === 'none';
+      content.style.display = isHidden ? '' : 'none';
+      btn.classList.toggle('expanded', isHidden);
+      btn.innerHTML = isHidden
+        ? '<span class="arrow">◀</span> סגור'
+        : '<span class="arrow">◀</span> קרא עוד';
+    }
+
     function escapeHTML(str) {
       const div = document.createElement('div');
       div.textContent = str;
@@ -1052,7 +1088,8 @@
             </div>
             <h2 class="post-title"><a href="#${postId}">${escapeHTML(post.title)}</a></h2>
             ${post.tldr ? `<div class="post-tldr">${escapeHTML(post.tldr)}</div>` : ''}
-            <div class="post-content">${formatContent(post.content)}</div>
+            <div class="post-toggle" onclick="togglePost(this)"><span class="arrow">◀</span> קרא עוד</div>
+            <div class="post-content" style="display:none">${formatContent(post.content)}</div>
             <div class="post-footer">
               <button class="share-btn" onclick="sharePost('${postId}', this)">🔗 שיתוף קישור</button>
             </div>
