@@ -432,6 +432,13 @@
       border-bottom: 1px solid var(--border);
     }
 
+    .post-actions {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+
     .post-toggle {
       display: inline-flex;
       align-items: center;
@@ -440,7 +447,6 @@
       font-weight: 600;
       color: var(--accent);
       cursor: pointer;
-      margin-bottom: 1rem;
       user-select: none;
       transition: opacity 0.15s;
     }
@@ -1088,11 +1094,11 @@
             </div>
             <h2 class="post-title"><a href="#${postId}">${escapeHTML(post.title)}</a></h2>
             ${post.tldr ? `<div class="post-tldr">${escapeHTML(post.tldr)}</div>` : ''}
-            <div class="post-toggle" onclick="togglePost(this)"><span class="arrow">◀</span> קרא עוד</div>
-            <div class="post-content" style="display:none">${formatContent(post.content)}</div>
-            <div class="post-footer">
-              <button class="share-btn" onclick="sharePost('${postId}', this)">🔗 שיתוף קישור</button>
+            <div class="post-actions">
+              <span class="post-toggle" onclick="togglePost(this)"><span class="arrow">◀</span> קרא עוד</span>
+              <button class="share-btn" onclick="sharePost('${postId}', this)">🔗 קישור</button>
             </div>
+            <div class="post-content" style="display:none">${formatContent(post.content)}</div>
           </article>`;
         }).join('');
 
