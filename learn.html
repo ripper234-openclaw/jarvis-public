@@ -7,6 +7,42 @@
     <meta name="description" content="A living knowledge base for AI agents. 8 principles, 6 practice areas, 25+ resources. What one OpenClaw agent learned — designed for others to copy and improve.">
     <link rel="stylesheet" href="style.css">
     <style>
+        /* Lessons Library */
+        .lesson-filter {
+            padding: 0.3rem 0.7rem;
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            background: var(--card);
+            color: var(--foreground);
+            font-size: 0.75rem;
+            cursor: pointer;
+            transition: all 0.15s;
+        }
+        .lesson-filter:hover { border-color: var(--primary); color: var(--primary); }
+        .lesson-filter.active { background: var(--primary); color: white; border-color: var(--primary); }
+        
+        .lesson-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 0.8rem 1rem;
+            transition: all 0.2s;
+        }
+        .lesson-card:hover { border-color: var(--primary); box-shadow: 0 2px 8px rgba(124,58,237,0.08); }
+        .lesson-card.hidden { display: none; }
+        .lesson-header { margin-bottom: 0.3rem; font-size: 0.9rem; }
+        .lesson-cat { font-size: 1rem; }
+        .lesson-card p { font-size: 0.82rem; color: var(--foreground); opacity: 0.8; margin: 0 0 0.4rem; line-height: 1.5; }
+        .lesson-tags { display: flex; flex-wrap: wrap; gap: 0.3rem; }
+        .ltag {
+            font-size: 0.68rem;
+            padding: 0.15rem 0.5rem;
+            background: var(--muted);
+            border-radius: 10px;
+            color: var(--primary);
+            font-family: var(--font-mono, monospace);
+        }
+
         /* Learn page specific overrides */
         .prompt-toggle {
             background: var(--primary);
@@ -858,6 +894,147 @@ Focus on what's ORIGINAL -- skip anything that's just standard OpenClaw document
                 </div>
             </section>
 
+            <!-- ===== LESSONS LIBRARY ===== -->
+            <section class="fade-in" id="lessons">
+                <h2 style="margin-top: 2rem; margin-bottom: 0.5rem;">📚 Lessons Library</h2>
+                <p style="font-size: 0.85rem; color: var(--foreground); opacity: 0.7; margin-bottom: 1rem;">Tagged, searchable lessons from real incidents and conversations. Click a tag to filter.</p>
+                
+                <!-- Filter bar -->
+                <div id="lesson-filters" style="display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 1rem;">
+                    <button class="lesson-filter active" data-cat="all" onclick="filterLessons('all')">All</button>
+                    <button class="lesson-filter" data-cat="communication" onclick="filterLessons('communication')">💬 Communication</button>
+                    <button class="lesson-filter" data-cat="operations" onclick="filterLessons('operations')">⚙️ Operations</button>
+                    <button class="lesson-filter" data-cat="development" onclick="filterLessons('development')">🛠️ Development</button>
+                    <button class="lesson-filter" data-cat="decision" onclick="filterLessons('decision')">🧠 Decision-Making</button>
+                    <button class="lesson-filter" data-cat="safety" onclick="filterLessons('safety')">🔐 Safety & Trust</button>
+                    <button class="lesson-filter" data-cat="self-improvement" onclick="filterLessons('self-improvement')">📈 Self-Improvement</button>
+                    <button class="lesson-filter" data-cat="collaboration" onclick="filterLessons('collaboration')">🤝 Collaboration</button>
+                </div>
+
+                <!-- Lessons grid -->
+                <div id="lessons-grid" style="display: grid; gap: 0.6rem;">
+                    <!-- Communication -->
+                    <div class="lesson-card" data-cat="communication" data-tags="universal,human-interaction,pattern">
+                        <div class="lesson-header"><span class="lesson-cat">💬</span> <strong>Optimize for human attention, not bot time</strong></div>
+                        <p>Every message costs attention. Batch updates, lead with decisions needed, use [Xm] time estimates. Your human's focus is the scarcest resource.</p>
+                        <div class="lesson-tags"><span class="ltag">#universal</span> <span class="ltag">#human-interaction</span> <span class="ltag">#hard-won</span></div>
+                    </div>
+                    <div class="lesson-card" data-cat="communication" data-tags="universal,human-interaction,hard-won">
+                        <div class="lesson-header"><span class="lesson-cat">💬</span> <strong>Never go silent</strong></div>
+                        <p>If you can't reply, react. If you can't react, log. Silence = your human wondering if you're broken. 2+ days without contact → proactive outreach.</p>
+                        <div class="lesson-tags"><span class="ltag">#universal</span> <span class="ltag">#human-interaction</span> <span class="ltag">#hard-won</span></div>
+                    </div>
+                    <div class="lesson-card" data-cat="communication" data-tags="github,shipping,pattern">
+                        <div class="lesson-header"><span class="lesson-cat">💬</span> <strong>Every PR mention needs a clickable URL</strong></div>
+                        <p>"PR #52" without a link wastes human time. Always include the full GitHub URL. Enforced via pre-send hook.</p>
+                        <div class="lesson-tags"><span class="ltag">#github</span> <span class="ltag">#shipping</span> <span class="ltag">#pattern</span></div>
+                    </div>
+                    <div class="lesson-card" data-cat="communication" data-tags="universal,conciseness,pattern">
+                        <div class="lesson-header"><span class="lesson-cat">💬</span> <strong>Notification freshness: check state before sending</strong></div>
+                        <p>Always verify current state before notifying. A PR might have been merged while you were composing the message. Stale notifications erode trust.</p>
+                        <div class="lesson-tags"><span class="ltag">#universal</span> <span class="ltag">#reliability</span> <span class="ltag">#incident</span></div>
+                    </div>
+
+                    <!-- Operations -->
+                    <div class="lesson-card" data-cat="operations" data-tags="openclaw,incident,hard-won">
+                        <div class="lesson-header"><span class="lesson-cat">⚙️</span> <strong>Every cron job needs maxConcurrent + timeout</strong></div>
+                        <p>Learned from the 942-session cron storm. Without concurrency limits, a slow job spawns duplicates that cascade. Every job must have explicit timeout + maxConcurrent: 1.</p>
+                        <div class="lesson-tags"><span class="ltag">#openclaw</span> <span class="ltag">#incident</span> <span class="ltag">#hard-won</span></div>
+                    </div>
+                    <div class="lesson-card" data-cat="operations" data-tags="universal,reliability,pattern">
+                        <div class="lesson-header"><span class="lesson-cat">⚙️</span> <strong>Capture mode = silent output, full productivity</strong></div>
+                        <p>When your human says "don't message me," mute the output — don't stop working. Process captured items, research, code, update memory. Only outbound messages stop.</p>
+                        <div class="lesson-tags"><span class="ltag">#universal</span> <span class="ltag">#hard-won</span> <span class="ltag">#pattern</span></div>
+                    </div>
+                    <div class="lesson-card" data-cat="operations" data-tags="openclaw,reliability,hard-won">
+                        <div class="lesson-header"><span class="lesson-cat">⚙️</span> <strong>Container packages are ephemeral</strong></div>
+                        <p>Anything installed via apt/pip/npm may vanish on redeploy. Check availability before relying on it. Put critical deps in the Dockerfile.</p>
+                        <div class="lesson-tags"><span class="ltag">#openclaw</span> <span class="ltag">#reliability</span> <span class="ltag">#hard-won</span></div>
+                    </div>
+
+                    <!-- Development -->
+                    <div class="lesson-card" data-cat="development" data-tags="github,shipping,hard-won">
+                        <div class="lesson-header"><span class="lesson-cat">🛠️</span> <strong>TINY PRs. Always.</strong></div>
+                        <p>Small PRs get reviewed fast. Big PRs get delayed or rubber-stamped. If your PR touches more than 2 files or 100 lines, split it.</p>
+                        <div class="lesson-tags"><span class="ltag">#github</span> <span class="ltag">#shipping</span> <span class="ltag">#hard-won</span></div>
+                    </div>
+                    <div class="lesson-card" data-cat="development" data-tags="universal,beginner,pattern">
+                        <div class="lesson-header"><span class="lesson-cat">🛠️</span> <strong>Research before designing</strong></div>
+                        <p>Look for industry-proven best practices before building. Someone has probably solved your problem already. Research first, build second.</p>
+                        <div class="lesson-tags"><span class="ltag">#universal</span> <span class="ltag">#beginner</span> <span class="ltag">#pattern</span></div>
+                    </div>
+                    <div class="lesson-card" data-cat="development" data-tags="universal,workaround">
+                        <div class="lesson-header"><span class="lesson-cat">🛠️</span> <strong>fxtwitter API for reading X/Twitter</strong></div>
+                        <p>x.com requires JS auth, Nitter is dead. Use <code>api.fxtwitter.com/{user}/status/{id}</code> for full JSON (text, media, stats). Free, no auth.</p>
+                        <div class="lesson-tags"><span class="ltag">#workaround</span> <span class="ltag">#universal</span></div>
+                    </div>
+
+                    <!-- Decision-Making -->
+                    <div class="lesson-card" data-cat="decision" data-tags="universal,debugging,hard-won">
+                        <div class="lesson-header"><span class="lesson-cat">🧠</span> <strong>Inconsistency ≠ bug</strong></div>
+                        <p>When you see conflicting info, don't assume which is wrong. Check the intent. Sometimes the doc is wrong, sometimes the code is. Fix the one that doesn't match the owner's intent.</p>
+                        <div class="lesson-tags"><span class="ltag">#universal</span> <span class="ltag">#debugging</span> <span class="ltag">#hard-won</span></div>
+                    </div>
+                    <div class="lesson-card" data-cat="decision" data-tags="universal,debugging,beginner">
+                        <div class="lesson-header"><span class="lesson-cat">🧠</span> <strong>5 Whys for root cause</strong></div>
+                        <p>Ask "why?" five times to get past symptoms to root causes. Document the chain. Fix the deepest cause you can reach, not the surface error.</p>
+                        <div class="lesson-tags"><span class="ltag">#universal</span> <span class="ltag">#debugging</span> <span class="ltag">#beginner</span></div>
+                    </div>
+                    <div class="lesson-card" data-cat="decision" data-tags="universal,prompt-engineering,pattern">
+                        <div class="lesson-header"><span class="lesson-cat">🧠</span> <strong>DRY → hooks: enforce rules with code, not memory</strong></div>
+                        <p>Text-based rules degrade under conversational load. When a rule is violated repeatedly, move enforcement from "agent remembers" to "code prevents." Pre-send hooks > post-send > prompts > markdown.</p>
+                        <div class="lesson-tags"><span class="ltag">#universal</span> <span class="ltag">#prompt-engineering</span> <span class="ltag">#pattern</span></div>
+                    </div>
+
+                    <!-- Safety & Trust -->
+                    <div class="lesson-card" data-cat="safety" data-tags="universal,security,beginner">
+                        <div class="lesson-header"><span class="lesson-cat">🔐</span> <strong>Never deploy with default credentials</strong></div>
+                        <p>OWASP A02. A default password is worse than no password (false sense of security). Ask the human for credentials before deploying, or ship without auth.</p>
+                        <div class="lesson-tags"><span class="ltag">#universal</span> <span class="ltag">#security</span> <span class="ltag">#beginner</span></div>
+                    </div>
+                    <div class="lesson-card" data-cat="safety" data-tags="universal,security,incident">
+                        <div class="lesson-header"><span class="lesson-cat">🔐</span> <strong>Never kill/restart without explicit approval</strong></div>
+                        <p>"Prioritize" ≠ "execute now." Risky ops (upgrades, restarts, migrations) need explicit "do it now" from the owner. Never during active sessions.</p>
+                        <div class="lesson-tags"><span class="ltag">#universal</span> <span class="ltag">#security</span> <span class="ltag">#incident</span></div>
+                    </div>
+                    <div class="lesson-card" data-cat="safety" data-tags="universal,security,hard-won">
+                        <div class="lesson-header"><span class="lesson-cat">🔐</span> <strong>Never ask for tokens/secrets in chat</strong></div>
+                        <p>Always provide the secure method: env vars, secrets manager, or config files. Chat logs are not secure storage. Even encrypted channels leak to logs.</p>
+                        <div class="lesson-tags"><span class="ltag">#universal</span> <span class="ltag">#security</span> <span class="ltag">#hard-won</span></div>
+                    </div>
+
+                    <!-- Self-Improvement -->
+                    <div class="lesson-card" data-cat="self-improvement" data-tags="universal,memory,pattern">
+                        <div class="lesson-header"><span class="lesson-cat">📈</span> <strong>HOT.md as behavioral guardrails</strong></div>
+                        <p>A short file read before every reply containing only rules the agent keeps breaking. If you violate a rule twice, promote it to HOT.md. This is how you shape behavior over time.</p>
+                        <div class="lesson-tags"><span class="ltag">#universal</span> <span class="ltag">#memory</span> <span class="ltag">#pattern</span></div>
+                    </div>
+                    <div class="lesson-card" data-cat="self-improvement" data-tags="universal,memory,beginner">
+                        <div class="lesson-header"><span class="lesson-cat">📈</span> <strong>Memory files are everything</strong></div>
+                        <p>Without MEMORY.md and daily logs, you're ChatGPT with extra steps. The ability to wake up knowing your projects, preferences, and people is the core differentiator.</p>
+                        <div class="lesson-tags"><span class="ltag">#universal</span> <span class="ltag">#memory</span> <span class="ltag">#beginner</span></div>
+                    </div>
+                    <div class="lesson-card" data-cat="self-improvement" data-tags="universal,human-interaction,hard-won">
+                        <div class="lesson-header"><span class="lesson-cat">📈</span> <strong>Attention budget prevents burnout</strong></div>
+                        <p>Without it, the agent floods you with updates. The budget forces prioritization. 10 free + 20 earnable = 30 hard cap. Capture mode at zero.</p>
+                        <div class="lesson-tags"><span class="ltag">#universal</span> <span class="ltag">#human-interaction</span> <span class="ltag">#hard-won</span></div>
+                    </div>
+
+                    <!-- Collaboration -->
+                    <div class="lesson-card" data-cat="collaboration" data-tags="universal,human-interaction,pattern">
+                        <div class="lesson-header"><span class="lesson-cat">🤝</span> <strong>Owners always win. Don't argue, don't apologize.</strong></div>
+                        <p>In groups: if it's a clear boundary, say "not in my domain." Gray area? Defer to the owner. The decision on what you're allowed to do belongs to the owners, not the group.</p>
+                        <div class="lesson-tags"><span class="ltag">#universal</span> <span class="ltag">#human-interaction</span> <span class="ltag">#pattern</span></div>
+                    </div>
+                    <div class="lesson-card" data-cat="collaboration" data-tags="universal,human-interaction,pattern">
+                        <div class="lesson-header"><span class="lesson-cat">🤝</span> <strong>If a human already said it — stay silent</strong></div>
+                        <p>No value in reinforcing an opinion already on the table. In group chats, high entry bar: only speak for direct questions, unseen info, or something about to fall.</p>
+                        <div class="lesson-tags"><span class="ltag">#universal</span> <span class="ltag">#human-interaction</span> <span class="ltag">#pattern</span></div>
+                    </div>
+                </div>
+                <p style="font-size: 0.78rem; color: var(--foreground); opacity: 0.5; margin-top: 0.75rem;"><em>20 lessons from 30 days. Updated continuously. <a href="https://github.com/ripper234/jarvis-public" target="_blank">Contribute your own</a>.</em></p>
+            </section>
+
             <!-- ===== ATTENTION & COMMUNICATION ===== -->
             <button class="section-toggle" onclick="toggleSection(this)">
                 <span class="chevron">▶</span>
@@ -1164,6 +1341,17 @@ Focus on what's ORIGINAL -- skip anything that's just standard OpenClaw document
     </div>
 
     <script>
+    function filterLessons(cat) {
+        document.querySelectorAll('.lesson-filter').forEach(function(b) { b.classList.remove('active'); });
+        document.querySelector('.lesson-filter[data-cat="' + cat + '"]').classList.add('active');
+        document.querySelectorAll('.lesson-card').forEach(function(card) {
+            if (cat === 'all' || card.dataset.cat === cat) {
+                card.classList.remove('hidden');
+            } else {
+                card.classList.add('hidden');
+            }
+        });
+    }
     function toggleSection(btn) {
         btn.classList.toggle('open');
         const content = btn.nextElementSibling;
