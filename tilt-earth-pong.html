@@ -183,10 +183,13 @@
     }
 
     function updatePlayer(dt) {
-      if (state.pointerActive || state.inputMode === 'tilt') {
+      if (state.motionSeen || state.tiltReady) {
         const targetY = clamp((state.tiltValue + 1) * 0.5 * (state.height - state.player.h), 0, state.height - state.player.h);
-        const blend = state.pointerActive ? 1 : Math.min(1, dt * 8);
+        const blend = Math.min(1, dt * 8);
         state.player.y += (targetY - state.player.y) * blend;
+      } else if (state.pointerActive) {
+        const targetY = clamp((state.tiltValue + 1) * 0.5 * (state.height - state.player.h), 0, state.height - state.player.h);
+        state.player.y = targetY;
       } else {
         let dir = 0;
         if (state.keys.up) dir -= 1;
@@ -404,10 +407,12 @@
       state.motionSeen = true;
       state.motionSupported = true;
       state.motionSource = source;
+      state.tiltReady = true;
+      state.inputMode = 'tilt';
+      state.pointerActive = false;
       state.tiltValue = normalized;
-      if (state.tiltReady && !state.pointerActive) state.inputMode = 'tilt';
       updateDebug();
-      if (firstSeen && state.tiltReady) {
+      if (firstSeen) {
         motionButton.hidden = false;
         motionButton.textContent = 'Recenter tilt';
         setStatus(`Tilt active via ${source}. Tap Recenter tilt if needed.`);
@@ -505,10 +510,11 @@
     });
 
     function updatePointer(clientY) {
+      if (state.motionSeen || state.tiltReady) return;
       state.pointerActive = true;
       state.inputMode = 'pointer';
       state.tiltValue = clamp((clientY / state.height) * 2 - 1, -1, 1);
-      setStatus('Pointer drag active. Mobile can also use tilt.');
+      setStatus('Pointer drag active.');
     }
 
     canvas.addEventListener('pointerdown', (event) => {
@@ -522,7 +528,7 @@
 
     canvas.addEventListener('pointerup', () => {
       state.pointerActive = false;
-      setStatus(state.tiltReady ? 'Tilt controls active. Drag or keys still work too.' : 'Tap Enable motion controls, or use ↑ and ↓ keys.');
+      setStatus(state.tiltReady ? 'Tilt controls active.' : 'Tap Enable motion controls, or use ↑ and ↓ keys.');
     });
 
     window.addEventListener('resize', resize);
