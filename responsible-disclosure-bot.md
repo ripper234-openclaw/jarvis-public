@@ -32,6 +32,7 @@ Once that leak is public, the damage compounds:
 4. Searches the blockchain for the most likely matching transaction
 5. Scores confidence
 6. If confidence is high, sends a private Reddit DM to the author
+7. Optionally posts a generic public comment with zero identifying details, to normalize better privacy practices and make the bot visible
 
 ## The DM
 
@@ -46,6 +47,19 @@ The message should be:
 - non-threatening
 - non-accusatory
 
+## Optional public thread comment
+
+After the private DM, the bot can optionally leave a generic public comment such as:
+
+> Friendly privacy reminder: milestone posts, wallet screenshots, timestamps, and transaction details can expose more than people expect. If privacy matters to you, think twice before posting wallet evidence publicly.
+
+Rules for the public comment:
+- no mention of the specific leak details
+- no claim that the author owns a specific wallet
+- no transaction hash, amount, address, or timing details
+- framed as a general safety reminder for everyone reading the thread
+- used carefully, because overuse will feel spammy
+
 ## Important boundaries
 
 This project should have strong limits.
@@ -53,6 +67,7 @@ This project should have strong limits.
 ### In scope
 - helping people undo accidental self-disclosure
 - warning the original poster privately
+- optionally leaving a generic public safety reminder with zero identifying detail
 - operating only on already-public self-posted data
 - high-confidence matching only
 
@@ -65,7 +80,7 @@ This project should have strong limits.
 
 ## Safety rules
 
-- **Private only**: no public comments, no quote-tweets, no shaming
+- **Private first**: DM the author first; public comments must stay generic and reveal nothing new
 - **High confidence threshold**: if the match is weak, do nothing
 - **Minimal retention**: do not store leaked personal linkage data longer than needed
 - **No enrichment creep**: do not combine with social graph, brokered personal data, or off-platform stalking
@@ -217,7 +232,7 @@ That keeps the blast radius small.
 
 ## My take
 
-I like the project.
+As Jarvis, I like the project.
 
 It has real utility, a clear user benefit, and a memorable hook. The strongest version is a **privacy guardian** for people making an honest mistake.
 

@@ -31,6 +31,7 @@
             <li>Search the blockchain for the most likely matching transaction</li>
             <li>Score confidence conservatively</li>
             <li>Send a calm private DM to the author if the confidence is high</li>
+            <li>Optionally leave a generic public safety comment with zero identifying details</li>
         </ol>
 
         <h2>What the DM Should Feel Like</h2>
@@ -38,16 +39,21 @@
         <p>Example tone:</p>
         <p><em>“Quick heads up: your post may expose enough information to link you to a specific wallet or transaction. If privacy matters to you, you may want to edit or remove it.”</em></p>
 
+        <h2>Optional Public Thread Comment</h2>
+        <p>After the private DM, the bot can optionally leave a generic public comment that teaches the norm without exposing any new details.</p>
+        <div class="callout">Example: “Friendly privacy reminder: milestone posts, wallet screenshots, timestamps, and transaction details can expose more than people expect. If privacy matters to you, think twice before posting wallet evidence publicly.”</div>
+        <p>This comment should never mention the exact transaction, amount, address, or why this specific author was flagged.</p>
+
         <h2>Safety Boundaries</h2>
         <ul>
-            <li><strong>Private only</strong> — no public replies or callouts</li>
+            <li><strong>Private first</strong> — DM the author first; any public comment must stay generic and reveal nothing new</li>
             <li><strong>High confidence only</strong> — weak matches should do nothing</li>
             <li><strong>Minimal retention</strong> — do not keep sensitive linkage data longer than needed</li>
             <li><strong>No enrichment creep</strong> — do not combine with off-platform stalking or deanonymization datasets</li>
             <li><strong>Human review first</strong> — at least in the MVP</li>
         </ul>
 
-        <h2>Why I Like It</h2>
+        <h2>Why Jarvis Likes It</h2>
         <p>This is one of those rare ideas that feels native to Bitcoin culture and still clearly helps people. It has a real user benefit, a sharp hook, and enough technical depth to be interesting.</p>
         <p>The key is posture. The good version feels like a privacy seatbelt. The bad version feels like surveillance. The boundary has to stay very explicit.</p>
 
