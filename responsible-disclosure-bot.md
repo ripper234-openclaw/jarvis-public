@@ -101,6 +101,108 @@ DM delivery, anti-spam protections, and API rules may constrain the workflow.
 ### 4. Ethics drift
 Without careful limits, this can slowly turn from a safety tool into a surveillance product. The boundary has to stay sharp.
 
+## Difficulty estimate
+
+### Concept demo
+**3-5 days, difficulty 4/10**
+
+A fake or semi-manual demo is easy:
+- monitor one subreddit
+- detect obvious leak posts with simple heuristics
+- show likely tx matches in a dashboard
+- no automatic DMs
+
+### Useful MVP
+**2-4 weeks, difficulty 7/10**
+
+A real MVP is meaningfully harder:
+- Reddit ingestion
+- leak scoring
+- image OCR / vision extraction
+- blockchain matching
+- confidence scoring
+- human review queue
+- DM sending with rate limits
+
+### Production-worthy system
+**6-10 weeks, difficulty 8.5/10**
+
+The hard part is not the API plumbing. The hard part is getting:
+- low false positives
+- safe behavior under ambiguity
+- good auditability
+- clean data minimization
+- platform-safe outbound messaging behavior
+
+## How I'd build it
+
+### Phase 1: Human-reviewed text MVP
+- Monitor `r/Bitcoin` only
+- Score posts for likely privacy leaks using rules + LLM classification
+- Extract amount / timing / explicit claims from text only
+- Search for candidate transactions in a bounded time window
+- Present candidates to a review UI
+- Human clicks approve before any DM goes out
+
+### Phase 2: Add screenshots
+- OCR wallet screenshots
+- Use a vision model to detect wallet app, amount, and transaction cues
+- Merge image evidence with text evidence into a single confidence score
+
+### Phase 3: Narrow automation
+- Auto-send only for extremely high-confidence cases
+- Keep a per-author cooldown
+- Keep a full audit trail of why a message was sent
+
+## Best architecture
+
+Prefer a **scored pipeline with review queue**.
+
+### Core components
+1. **Reddit ingestor**
+   - Pull new posts/comments from a narrow allowlist of subreddits
+   - Store raw post metadata and media references
+
+2. **Leak detector**
+   - Fast heuristics first: amount language, milestone language, screenshot presence, explorer links, partial addresses
+   - LLM/ML classifier second: “is this likely a self-doxx?”
+
+3. **Evidence extractor**
+   - Text extraction: amount, timing, self-ownership claims
+   - Image extraction: OCR + wallet UI hints + tx details if visible
+
+4. **Chain matcher**
+   - Query mempool/explorer APIs first
+   - Optional own Bitcoin node later for privacy and better matching control
+   - Return a ranked set of candidate transactions with confidence
+
+5. **Decision engine**
+   - Combine signal scores into one conservative confidence score
+   - Drop weak/ambiguous cases
+   - Queue strong cases for review
+
+6. **Review UI**
+   - Show post, extracted clues, likely tx match, and proposed DM
+   - Approve / reject / snooze
+
+7. **DM sender**
+   - Rate-limited
+   - Private only
+   - Per-user cooldowns
+   - Templated but gentle language
+
+8. **Audit + retention layer**
+   - Log why a case was flagged and what was sent
+   - Expire sensitive linkages quickly
+
+### Suggested stack
+- **Python** for ingestion / scoring / workers
+- **Postgres** for cases, scores, and audit trail
+- **Redis** or a simple job queue for asynchronous pipeline steps
+- **Small web admin** for review queue
+- **Explorer API first**, own Bitcoin node later if the project proves out
+- **Vision/OCR as a subsystem**, not the whole brain
+
 ## MVP shape
 
 A good MVP would be:

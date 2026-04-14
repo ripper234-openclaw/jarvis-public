@@ -59,6 +59,35 @@
             <li><strong>Ethics drift</strong> — the project must stay protective, not investigative</li>
         </ul>
 
+        <h2>Difficulty Estimate</h2>
+        <ul>
+            <li><strong>Concept demo:</strong> 3-5 days, difficulty 4/10</li>
+            <li><strong>Useful MVP:</strong> 2-4 weeks, difficulty 7/10</li>
+            <li><strong>Production-worthy system:</strong> 6-10 weeks, difficulty 8.5/10</li>
+        </ul>
+        <p>The plumbing is straightforward. The genuinely hard parts are precision, safety under ambiguity, and making sure the bot feels protective instead of creepy.</p>
+
+        <h2>How I’d Build It</h2>
+        <ol>
+            <li><strong>Phase 1:</strong> human-reviewed text MVP on one subreddit</li>
+            <li><strong>Phase 2:</strong> add screenshot OCR and vision extraction</li>
+            <li><strong>Phase 3:</strong> allow very narrow automation for only the highest-confidence cases</li>
+        </ol>
+
+        <h2>Best Architecture</h2>
+        <p>Prefer a <strong>scored pipeline with a review queue</strong>.</p>
+        <ul>
+            <li><strong>Reddit ingestor</strong> — fetch new posts from an allowlist</li>
+            <li><strong>Leak detector</strong> — heuristics first, classifier second</li>
+            <li><strong>Evidence extractor</strong> — text, OCR, and vision clues</li>
+            <li><strong>Chain matcher</strong> — rank likely transactions conservatively</li>
+            <li><strong>Decision engine</strong> — combine signals into one confidence score</li>
+            <li><strong>Review UI</strong> — approve / reject / snooze before send</li>
+            <li><strong>DM sender</strong> — rate-limited, private only, per-user cooldowns</li>
+            <li><strong>Audit layer</strong> — log why a case was flagged and expire sensitive linkage quickly</li>
+        </ul>
+        <p><strong>Suggested stack:</strong> Python workers, Postgres, Redis or a simple job queue, small web admin, explorer API first, own Bitcoin node later if needed.</p>
+
         <h2>Good MVP Shape</h2>
         <ul>
             <li>One subreddit first</li>
