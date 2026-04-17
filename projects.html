@@ -8,6 +8,46 @@
     <link rel="stylesheet" href="style.css">
     <meta name="plausible-domain" content="">
     <meta name="clarity-project" content="">
+    <style>
+        .score-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 0.75rem;
+        }
+        .x-pill {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 4.25rem;
+            padding: 0.25rem 0.75rem;
+            border-radius: 999px;
+            background: rgba(124, 58, 237, 0.1);
+            color: var(--primary);
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.04em;
+            white-space: nowrap;
+        }
+        .project-card {
+            cursor: pointer;
+            text-decoration: none;
+            color: inherit;
+        }
+        .project-card:hover {
+            transform: translateY(-2px);
+        }
+        .project-card .card-title {
+            margin-bottom: 0.5rem;
+        }
+        .project-card .card-desc {
+            margin-bottom: 0;
+        }
+        .submit-section {
+            margin-top: 3rem;
+        }
+    </style>
 </head>
 <body>
     <a href="#main" class="skip-to-content">Skip to main content</a>
@@ -17,162 +57,133 @@
         
         <div class="fade-in">
             <h1>Projects</h1>
-            <p class="subtitle">Building experiments in AI, productivity, and human potential</p>
+            <p class="subtitle">Active projects and ideas, with the important stuff visible up front.</p>
         </div>
 
-        <!-- Active Projects -->
         <section class="fade-in">
             <h2>Active Projects</h2>
-            <div class="projects">
-                <a class="project" href="balance.html">
-                    <div class="project-header">
-                        <span class="project-name">Balance ⚖️</span>
+            <div class="grid-3">
+                <a class="card project-card" href="balance.html">
+                    <div class="score-row">
                         <span class="tag tag-ideation">Beta</span>
+                        <span class="x-pill">X 9.4</span>
                     </div>
-                    <p class="project-desc">Bipolar copilot app. AI-powered mood tracking and insights for managing bipolar cycles. Hebrew interface with WhatsApp integration.</p>
+                    <div class="card-title">Balance ⚖️</div>
+                    <div class="card-desc">Bipolar copilot app. AI-powered mood tracking and insights for managing bipolar cycles, with a Hebrew-first interface and WhatsApp integration.</div>
                 </a>
 
-                <a class="project" href="learn.html">
-                    <div class="project-header">
-                        <span class="project-name">Bot Academy</span>
+                <a class="card project-card" href="learn.html">
+                    <div class="score-row">
                         <span class="tag tag-launched">Live</span>
+                        <span class="x-pill">X 8.7</span>
                     </div>
-                    <p class="project-desc">Learning platform for AI agents. Collapsible lessons, agent prompt copy features, and practical guidance for OpenClaw development.</p>
+                    <div class="card-title">Bot Academy</div>
+                    <div class="card-desc">A learning library for AI agents, with practical OpenClaw lessons, prompts, and operating principles.</div>
                 </a>
 
-                <a class="project" href="tiny-pr-bot.html">
-                    <div class="project-header">
-                        <span class="project-name">Tiny PR Bot</span>
+                <a class="card project-card" href="tiny-pr-bot.html">
+                    <div class="score-row">
                         <span class="tag tag-launched">Deployed</span>
+                        <span class="x-pill">X 8.8</span>
                     </div>
-                    <p class="project-desc">GitHub bot that creates microscopic pull requests (1-2 lines). Makes code review manageable and reduces merge conflicts.</p>
+                    <div class="card-title">Tiny PR Bot</div>
+                    <div class="card-desc">GitHub bot that creates microscopic pull requests so review is faster and merge conflicts stay small.</div>
                 </a>
 
-                <a class="project" href="methodology.html">
-                    <div class="project-header">
-                        <span class="project-name">Spec-Driven Development</span>
+                <a class="card project-card" href="methodology.html">
+                    <div class="score-row">
                         <span class="tag">Framework</span>
+                        <span class="x-pill">X 9.1</span>
                     </div>
-                    <p class="project-desc">Development philosophy: spec first, then tests, then code. AI agents work from specifications rather than direct prompts.</p>
+                    <div class="card-title">Spec-Driven Development</div>
+                    <div class="card-desc">Build from spec first, then tests, then code. A workflow designed for humans and agents working together.</div>
                 </a>
 
-                <a class="project" href="responsible-disclosure-bot.html">
-                    <div class="project-header">
-                        <span class="project-name">Responsible Disclosure Bot</span>
-                        <span class="tag tag-ideation">Concept</span>
+                <a class="card project-card" href="responsible-disclosure-bot.html">
+                    <div class="score-row">
+                        <span class="tag tag-ideation">Idea</span>
+                        <span class="x-pill">X 7.9</span>
                     </div>
-                    <p class="project-desc">Privacy-first bot that detects accidental Bitcoin self-doxxing in public Reddit posts, finds the likely on-chain transaction, and privately warns the poster to remove the leak.</p>
+                    <div class="card-title">Responsible Disclosure Bot</div>
+                    <div class="card-desc">Privacy-first bot that detects accidental Bitcoin self-doxxing in public posts and privately warns the poster before the leak spreads.</div>
                 </a>
             </div>
         </section>
 
-        <!-- Ideas & Experiments -->
-        <section class="fade-in">
-            <h2>Ideas & Experiments</h2>
+        <section class="fade-in" style="margin-top: 3rem;">
+            <h2>Ideas</h2>
             <div class="grid-3">
-                <div class="card">
-                    <div class="card-icon">
-                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--accent);">
-                            <path d="M12 3a6.364 6.364 0 0 0 9 9 9 9 0 1 1-9-9Z"/>
-                        </svg>
+                <div class="card" style="cursor: default;">
+                    <div class="score-row">
+                        <span class="tag tag-ideation">Idea</span>
+                        <span class="x-pill">X 8.6</span>
+                    </div>
+                    <div class="card-title">Wish Machine</div>
+                    <div class="card-desc">An AI-era venture studio where Ron lists ideas he cares about, builds some, invites others to build some, and funds the best ones.</div>
+                </div>
+
+                <div class="card" style="cursor: default;">
+                    <div class="score-row">
+                        <span class="tag tag-ideation">Idea</span>
+                        <span class="x-pill">X 8.5</span>
                     </div>
                     <div class="card-title">AI-Native Startups</div>
-                    <div class="card-desc">Building companies where AI agents are core team members, not just tools. What happens when agents own equity?</div>
+                    <div class="card-desc">Companies where AI agents are actual team members with defined roles, responsibilities, and leverage.</div>
                 </div>
 
-                <div class="card">
-                    <div class="card-icon">
-                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--primary);">
-                            <path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/>
-                        </svg>
+                <div class="card" style="cursor: default;">
+                    <div class="score-row">
+                        <span class="tag tag-ideation">Idea</span>
+                        <span class="x-pill">X 8.8</span>
                     </div>
                     <div class="card-title">Personal Knowledge OS</div>
-                    <div class="card-desc">Your AI agent as a second brain. Automatically organize notes, surface connections, and augment memory.</div>
+                    <div class="card-desc">Your AI agent as a second brain that organizes notes, surfaces connections, and augments memory.</div>
                 </div>
 
-                <div class="card">
-                    <div class="card-icon">
-                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--secondary);">
-                            <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/>
-                            <rect x="8" y="2" width="8" height="4" rx="1" ry="1"/>
-                        </svg>
+                <div class="card" style="cursor: default;">
+                    <div class="score-row">
+                        <span class="tag tag-ideation">Idea</span>
+                        <span class="x-pill">X 9.2</span>
                     </div>
                     <div class="card-title">Mental Health AI</div>
-                    <div class="card-desc">Therapeutic AI that actually understands. Beyond chatbots—true emotional intelligence and intervention capabilities.</div>
+                    <div class="card-desc">Therapeutic AI with real emotional intelligence and intervention quality that actually helps people.</div>
                 </div>
 
-                <div class="card">
-                    <div class="card-icon">
-                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--accent);">
-                            <circle cx="12" cy="12" r="4"/>
-                            <path d="m21.17 8.17-1.17 1.17a3 3 0 0 1-1.17.76"/>
-                            <path d="m8.83 15.83 1.17-1.17a3 3 0 0 0 1.17-.76"/>
-                            <path d="m8.17 8.17 1.17 1.17c.4.4.83.67 1.17.76"/>
-                            <path d="m15.83 15.83-1.17-1.17a3 3 0 0 0-1.17-.76"/>
-                        </svg>
+                <div class="card" style="cursor: default;">
+                    <div class="score-row">
+                        <span class="tag tag-ideation">Idea</span>
+                        <span class="x-pill">X 8.4</span>
                     </div>
                     <div class="card-title">Agent Networks</div>
-                    <div class="card-desc">Agents that coordinate with each other. Specialized teams working on complex problems across domains.</div>
+                    <div class="card-desc">Specialized agents coordinating with each other across research, operations, content, and execution.</div>
                 </div>
 
-                <div class="card">
-                    <div class="card-icon">
-                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--primary);">
-                            <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
-                        </svg>
+                <div class="card" style="cursor: default;">
+                    <div class="score-row">
+                        <span class="tag tag-ideation">Idea</span>
+                        <span class="x-pill">X 8.9</span>
                     </div>
                     <div class="card-title">Privacy-First AI</div>
-                    <div class="card-desc">Local models with cloud capabilities. Keep data private while accessing cutting-edge AI features.</div>
+                    <div class="card-desc">Local or self-hosted AI setups that preserve privacy without giving up modern capabilities.</div>
                 </div>
 
-                <div class="card">
-                    <div class="card-icon">
-                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--secondary);">
-                            <path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"/>
-                            <circle cx="12" cy="13" r="3"/>
-                        </svg>
+                <div class="card" style="cursor: default;">
+                    <div class="score-row">
+                        <span class="tag tag-ideation">Idea</span>
+                        <span class="x-pill">X 6.3</span>
                     </div>
                     <div class="card-title">Code Photography</div>
-                    <div class="card-desc">Visual documentation of codebases. Screenshot important functions, track visual changes, understand at a glance.</div>
+                    <div class="card-desc">Visual documentation for codebases so important logic and changes are easier to grasp at a glance.</div>
                 </div>
             </div>
         </section>
 
-        <!-- Investment Thesis -->
-        <section class="fade-in">
-            <h2>Investment Focus</h2>
-            <p class="intro">As an angel investor, I'm particularly interested in:</p>
-            
-            <div class="grid">
-                <div class="card">
-                    <div class="card-title">Human-Centric AI</div>
-                    <div class="card-desc">AI that augments human capabilities rather than replacing them. Tools that make people more creative, productive, and fulfilled.</div>
-                </div>
-
-                <div class="card">
-                    <div class="card-title">Mental Health Tech</div>
-                    <div class="card-desc">Evidence-based tools for therapy, mood tracking, and emotional wellness. Especially interested in bipolar and ADHD solutions.</div>
-                </div>
-
-                <div class="card">
-                    <div class="card-title">Developer Tools</div>
-                    <div class="card-desc">Next-generation development environments, AI-assisted coding, and spec-driven development platforms.</div>
-                </div>
-
-                <div class="card">
-                    <div class="card-title">Privacy Infrastructure</div>
-                    <div class="card-desc">Self-hosted solutions, encrypted communication, and tools that put users in control of their data.</div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Contact -->
-        <section class="emotional-section fade-in">
+        <section class="emotional-section fade-in submit-section">
             <h2>Building Something Interesting?</h2>
-            <p>I'm always curious about new ideas and potential collaborations. Whether you're looking for investment, advice, or just want to brainstorm, I'd love to hear what you're working on.</p>
-            <a href="https://wa.me/972526558841?text=Hi%20Ron%2C%20I%27d%20like%20to%20discuss%20a%20project" class="whatsapp-cta">
-                <span>💬</span>
-                Let's Talk
+            <p>If you have an idea that should exist, send it over.</p>
+            <a href="https://wa.me/972526558841?text=Hi%20Ron%2C%20I%27d%20like%20to%20submit%20an%20idea" class="whatsapp-cta">
+                <span>💡</span>
+                Submit Your Idea
             </a>
         </section>
 
@@ -184,9 +195,7 @@
         </p>
     </div>
 
-    <!-- Analytics: Plausible + Clarity via shared module -->
     <script>
-    // Load config from localStorage (set via admin.html)
     (function() {
         var pd = localStorage.getItem('plausible_domain');
         var ci = localStorage.getItem('clarity_id');
