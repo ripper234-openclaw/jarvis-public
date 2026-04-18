@@ -11,11 +11,8 @@
     <meta name="clarity-project" content="">
     <style>
         .score-row {
-            display: flex;
-            justify-content: flex-start;
-            align-items: center;
-            gap: 0.75rem;
-            margin-bottom: 0.75rem;
+            float: right;
+            margin: 0 0 0.5rem 0.75rem;
         }
         .project-card {
             cursor: pointer;
@@ -26,9 +23,11 @@
             transform: translateY(-2px);
         }
         .project-card .card-title {
+            overflow: hidden;
             margin-bottom: 0.5rem;
         }
         .project-card .card-desc {
+            clear: both;
             margin-bottom: 0;
         }
         .submit-section {
@@ -86,7 +85,7 @@
             <div class="grid-3">
                 <a class="card project-card" href="balance.html" target="_blank" rel="noopener noreferrer">
                     <div class="score-row">
-                        <span class="tag tag-ideation">Beta</span>
+                        <span class="tag tag-launched">Beta</span>
                     </div>
                     <div class="card-title">Balance ⚖️</div>
                     <div class="card-desc">Bipolar copilot app. AI-powered mood tracking and insights for managing bipolar cycles, with a Hebrew-first interface and WhatsApp integration.</div>
@@ -115,7 +114,7 @@
             <div class="grid-3">
                 <a class="card project-card" href="learn.html" target="_blank" rel="noopener noreferrer">
                     <div class="score-row">
-                        <span class="tag tag-launched">Live</span>
+                        <span class="tag tag-launched">Active</span>
                     </div>
                     <div class="card-title">Bot Academy 🎓</div>
                     <div class="card-desc">A learning library for AI agents, with practical OpenClaw lessons, prompts, and operating principles.</div>
@@ -123,7 +122,7 @@
 
                 <a class="card project-card" href="tiny-pr-bot.html" target="_blank" rel="noopener noreferrer">
                     <div class="score-row">
-                        <span class="tag tag-launched">Deployed</span>
+                        <span class="tag tag-launched">Active</span>
                     </div>
                     <div class="card-title">Tiny PR Bot 🔧</div>
                     <div class="card-desc">GitHub bot that creates microscopic pull requests so review is faster and merge conflicts stay small.</div>
@@ -131,7 +130,7 @@
 
                 <a class="card project-card" href="https://docs.google.com/spreadsheets/d/1x3njEmv5_Zo92w_nH-1s75m4xzLJ_DGxBDxs2-REtPY/edit?gid=0#gid=0" target="_blank" rel="noopener noreferrer">
                     <div class="score-row">
-                        <span class="tag tag-launched">Live</span>
+                        <span class="tag tag-launched">Active</span>
                     </div>
                     <div class="card-title">ron.build 📝</div>
                     <div class="card-desc">A Hebrew blog about what I am building, and about my builder journey.</div>
@@ -198,7 +197,7 @@
             <div class="grid-3">
                 <a class="card project-card" href="https://fredo.ai/" target="_blank" rel="noopener noreferrer">
                     <div class="score-row">
-                        <span class="tag tag-launched">Launched</span>
+                        <span class="tag tag-launched">Active</span>
                     </div>
                     <div class="card-title">Fredo.ai 💬</div>
                     <div class="card-desc">WhatsApp productivity bot, still live and running largely on autopilot.</div>
@@ -206,7 +205,7 @@
 
                 <a class="card project-card" href="https://whateverworks.me/" target="_blank" rel="noopener noreferrer">
                     <div class="score-row">
-                        <span class="tag tag-launched">Launched</span>
+                        <span class="tag tag-launched">Active</span>
                     </div>
                     <div class="card-title">Whatever Works 📖</div>
                     <div class="card-desc">Self-optimization book and wiki covering therapy, productivity, and personal growth.</div>
