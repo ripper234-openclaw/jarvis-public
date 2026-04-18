@@ -1,8 +1,8 @@
-# Just In Time (Working Title)
+# Jump In
 
 ## Overview
 
-This project aims to connect individuals with activities they want to participate in immediately or within a short span. It allows users to find events, classes, or gatherings that fit their immediate schedule, catering to diverse time zones and interests.
+Jump In aims to connect individuals with activities they want to participate in immediately or within a short span. It allows users to find events, classes, or gatherings that fit their immediate schedule, catering to diverse time zones and interests.
 
 ## Features
 
