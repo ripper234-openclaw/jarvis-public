@@ -14,9 +14,9 @@ import xml.etree.ElementTree as ET
 ROOT = Path(__file__).resolve().parents[1]
 PROJECTS_HTML = ROOT / "projects.html"
 STATE_PATH = ROOT / "data" / "projects-feed-state.json"
-FEED_PATH = ROOT / "feed.xml"
+FEED_PATH = ROOT / "projects-feed.xml"
 SITE_URL = "https://jarvis.ripper234.com"
-FEED_URL = f"{SITE_URL}/feed.xml"
+FEED_URL = f"{SITE_URL}/projects-feed.xml"
 
 
 @dataclass
