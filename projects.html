@@ -47,6 +47,22 @@
         .submit-section {
             margin-top: 3rem;
         }
+        .intro-details {
+            margin-top: 0.75rem;
+            margin-bottom: 1.5rem;
+            padding: 0.85rem 1rem;
+            border: 1px solid rgba(124, 58, 237, 0.12);
+            border-radius: 14px;
+            background: rgba(124, 58, 237, 0.04);
+        }
+        .intro-details summary {
+            cursor: pointer;
+            font-weight: 600;
+            color: var(--primary);
+        }
+        .intro-details p {
+            margin: 0.75rem 0 0;
+        }
     </style>
 </head>
 <body>
@@ -58,6 +74,10 @@
         <div class="fade-in">
             <h1>Projects</h1>
             <p class="subtitle">What I'm Working On</p>
+            <details class="intro-details">
+                <summary>Learn more</summary>
+                <p>This page mixes projects Ron is actively building with ideas he wants to exist in the world. Some he is building himself, some he is looking for collaborators or founders for, and some he may support as an investor, advisor, or power user.</p>
+            </details>
         </div>
 
         <section class="fade-in">
