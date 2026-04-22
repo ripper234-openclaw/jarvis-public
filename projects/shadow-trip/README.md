@@ -138,13 +138,20 @@ Main risks include:
 
 - Fold in Ron's GPT deep research once it is ready, especially around customer segmentation, trust/liability design, integrations, approval rules, and the best service-first wedge.
 
-## Stronger name options
+## Stronger name options to test
 
-- Quiet Trip AI
 - Aircover Concierge
-- Atlas Concierge AI
-- Grace Travel AI
-- Calm Arrival
+- Sky Concierge
+- Flight Deck Concierge
+- Airside Concierge
+- Flight Path AI
+- Travel Operator AI
+- Trip Operator AI
+- Flight Steward AI
+- Airbridge Concierge
+- First Class Operator
+
+**Naming note:** the cleaner move may be to keep the brand name non-technical, and put the AI framing in the subtitle instead.
 
 ## Short version
 
