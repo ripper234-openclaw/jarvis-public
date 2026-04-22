@@ -1,12 +1,12 @@
 # Shadow Trip
 
-*A concierge-grade travel operator for VIPs, executives, and anyone whose travel cannot fail.*
+*An AI-first VIP travel operator with human backup for people whose travel cannot fail.*
 
 ## What it is
 
-Shadow Trip is an always-on travel operator.
+Shadow Trip is an AI-first, always-on travel operator.
 
-It does more than search for flights or suggest options. It tracks live trips, prepares fallback plans in advance, and helps execute fast when reality changes.
+It does more than search for flights or suggest options. It tracks live trips, prepares fallback plans in advance, and helps execute fast when reality changes. AI handles the monitoring, preparation, and fast first-pass decision support. Humans stay in the loop for edge cases, trust, and accountability.
 
 The core promise is simple:
 
