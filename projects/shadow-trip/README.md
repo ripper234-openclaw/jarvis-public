@@ -138,6 +138,14 @@ Main risks include:
 
 - Fold in Ron's GPT deep research once it is ready, especially around customer segmentation, trust/liability design, integrations, approval rules, and the best service-first wedge.
 
+## Stronger name options
+
+- Quiet Trip AI
+- Aircover Concierge
+- Atlas Concierge AI
+- Grace Travel AI
+- Calm Arrival
+
 ## Short version
 
 Shadow Trip is a premium travel operator for people whose trips matter too much to manage manually.
