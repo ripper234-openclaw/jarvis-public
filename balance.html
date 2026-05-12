@@ -10,26 +10,10 @@
     <meta name="clarity-project" content="">
 </head>
 <body>
-    <script>
-    // Redirect non-Israel visitors to English version
-    (function() {
-        if (window.location.hash === '#he' || sessionStorage.getItem('balance_lang') === 'he') return;
-        var tz = Intl.DateTimeFormat().resolvedOptions().timeZone || '';
-        var lang = (navigator.language || navigator.userLanguage || '').toLowerCase();
-        var isIsrael = tz === 'Asia/Jerusalem' || lang.startsWith('he');
-        if (!isIsrael) {
-            window.location.replace('balance-en.html');
-        }
-    })();
-    </script>
     <a href="#main" class="skip-to-content">דלג לתוכן הראשי</a>
     
     <div class="page" id="main">
         <a class="back" href="request-for-startups.html">← פרויקטים</a>
-        
-        <div style="text-align:left; margin-bottom: -1rem;">
-            <a href="balance-en.html" style="font-size: 0.85rem; opacity: 0.7; text-decoration: none;">🌐 English</a>
-        </div>
         
         <!-- Hero Section -->
         <div class="hero hero-hebrew">
