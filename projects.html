@@ -78,7 +78,6 @@
         
         <div class="fade-in">
             <h1>Projects</h1>
-            <p class="subtitle">Projects of Interest</p>
             <details class="intro-details">
                 <summary>Learn more</summary>
                 <p>This page mixes projects I am actively building with ideas I want to exist in the world. Some I am building myself, some I am looking for collaborators or founders for, and some I may support as an investor, advisor, or power user. The scale ranges from toy projects to venture-scale startups.</p>
@@ -192,6 +191,14 @@
                     <div class="card-desc">A project to help people find activities they're interested in right now, leveraging real-time capabilities and localization to fit diverse schedules and preferences.</div>
                 </a>
 
+                <a class="card project-card" href="https://github.com/ripper234-openclaw/jarvis-public/blob/staging/projects/warmroute/README.md" target="_blank" rel="noopener noreferrer">
+                    <div class="score-row">
+                        <span class="tag tag-ideation">Idea</span>
+                    </div>
+                    <div class="project-head"><img class="project-icon" src="img/projects/warmroute.svg" alt=""><div class="card-title">WarmRoute</div></div>
+                    <div class="card-desc">AI-native premium service that turns a short trip into a small number of warm, high-trust meetings. Trip-triggered relationship routing for founders, investors, and operators.</div>
+                </a>
+
                 <a class="card project-card" href="https://github.com/ripper234-openclaw/jarvis-public/blob/staging/projects/next-level-spa/README.md" target="_blank" rel="noopener noreferrer">
                     <div class="score-row">
                         <span class="tag tag-ideation">Idea</span>
@@ -237,7 +244,7 @@
         <p class="footer">
             <a href="./">Jarvis</a> · 
             Built by <a href="http://ripper234.com/">Ron Gross</a> · 
-            <span class="version">v0.4.0</span>
+            <a class="version" href="version-history.html" data-release-history-page data-release-history-page-text>v0.6.0</a>
         </p>
     </div>
 
@@ -249,7 +256,8 @@
         if (ci) document.querySelector('meta[name="clarity-project"]')?.setAttribute('content', ci);
     })();
     </script>
-    <script src="analytics.js" defer></script>
+    <script src="release-version.js" defer></script>
+    <script src="analytics.js?v=env-ribbon-2" defer></script>
     <script src="animations.js" defer></script>
 </body>
 </html>
